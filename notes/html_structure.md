@@ -9,7 +9,7 @@
 </html>
 ```
 
-`<!DOCTYPE html>` indicates the newest version of html
+`<!DOCTYPE html>` indicates the newest version of html      
 `<head> </head>` section doesn't appear in the web itself 
 - title of web in the tab
 - style
