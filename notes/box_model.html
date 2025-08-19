@@ -10,12 +10,26 @@
             background-color: rgb(200,0,0);
             color: white; 
             border: none;
-            height: 36px; 
-            width: 105px;
             border-radius: 2px; 
-            cursor: pointer; /* change cursor */
-            margin-right: 8px;
-            transition: opacity 0.5s;  /* apply some animation */
+            /* 
+            fixed height and width: low flexibility on the content 
+
+            height: 36px;   
+            width: 105px;
+            */ 
+
+            /* padding: inside element
+               change button side with the content */
+
+            padding-left: 10px; 
+            padding-right: 10px; 
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            vertical-align: top; /* align to the top instead of by text */ 
+            cursor: pointer; 
+            margin-right: 8px;    /* margin - outside of element */ 
+            transition: opacity 0.5s;  
         }
 
 
@@ -26,8 +40,14 @@
             border-width: 1px; 
             border-radius: 2px; 
             color: rgb(85, 134, 239); 
-            height: 36px; 
-            width: 62px; 
+            /* height: 36px; 
+            width: 62px; */
+
+            padding-left: 10px; 
+            padding-right: 10px; 
+            padding-top: 9px;     /* note that a boarder adds to the element - larger */ 
+            padding-bottom: 9px;
+
             cursor: pointer; 
             margin-right: 3px; 
             transition: background-color 0.5s, 
@@ -37,8 +57,11 @@
 </head>
 <body>
     <p>
-        margin: space on the outside <br>
-        
+        margin: space on the outside<br>
+        padding: space on the inside<br>
+
+        align: browser are aligned by text by default <br>
+        not boarder or anything else - by text! 
     </p>
 
     <button class="subscribe-button"> 
