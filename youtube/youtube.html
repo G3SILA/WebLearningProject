@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube.com Clone</title>
+    <style>
+        .search-bar{
+            font-size: 20px;
+            display: block;
+        }
+        .video-preview {
+            width: 300px;
+            display: inline-block; 
+            vertical-align: top;
+            margin-right: 15px;
+        }
+        .thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+            display: block; 
+        }
+
+        .video-title{
+            width: 100%; 
+        }
+        .video-author,
+        .video-stats{
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+    <input class="search-bar" type="text" placeholder="Search">
+    
+    <div class="video-preview">
+        <img class="thumbnail" src="imgs/catsSaveWorld.jpg">
+        <p class="video-title"> 
+            Too cat to handle. Cute Cats! Join us for more caaaaaaaats  
+        </p>
+        <p class="video-author"> 
+            Cute Cats 101
+        </p>
+        <p class="video-stats">
+            3.4M views &#183; 6 months ago
+        </p>
+    </div>
+    
+    <div class="video-preview">
+        <img class="thumbnail" src="imgs/cat2.jpg">
+        <p class="video-title"> 
+            Cute Catsssssssss!
+        </p>
+        <p class="video-author"> 
+            Cute Cats 101
+        </p>
+        <p class="video-stats">
+            3.98M views &#183; 6 months ago
+        </p>
+    </div>
+</body>
+</html>
