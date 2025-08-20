@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+    <style>
+        .search-bar {
+            height: 40px; 
+            width: 700px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            text-align: left;
+            padding-right: 30px;
+            padding-left: 23px;
+            box-shadow: 0px 0px 5px gray ;
+            margin-bottom: 50px;
+            margin-left: 20px;
+        }
+
+        .LinkedIn {
+            font: Arial; 
+            width: 350px; 
+            color: rgb(57, 57, 57); 
+            font-size: 13px;
+            margin-left: 20px;
+            margin-bottom: 50px;
+        }
+        .email{
+            margin-bottom: 5px;
+        }
+        .email-bar{
+            width: 100%; 
+            border-radius: 3px;
+            border-color: black;
+            border-style: solid; 
+            height: 23px;
+            margin-bottom: 8px;
+        }
+        .agree-button{
+            background-color: rgb(38, 110, 203);
+            color: white;
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .Tweet{
+            vertical-align: middle;
+            width: 500px;
+        }
+        .profile-img{
+            height: 50px; 
+            width: 50px;
+            object-fit: cover;
+            vertical-align: middle;
+            border-radius: 25px;
+            margin-right: 15px;
+        }
+        .tweet-button {
+            background-color: rgb(2, 158, 255);
+            border: none; 
+            color: white;
+            height: 36px; 
+            width: 75px; 
+            border-radius: 18px; 
+
+            font-weight: bold; 
+            font-size: 15px; 
+            margin-left: 20px; 
+            cursor: pointer; 
+
+            vertical-align: middle;
+        }
+
+        .content-text{
+            border: none;
+            font-size: 17px;
+            height: 40px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <input class="search-bar" type="text" placeholder="Search Google or type a URL"> 
+
+    <div class="LinkedIn">
+        <p class="email">
+            Email
+        </p>
+        <input class="email-bar" type="text">
+        <p>
+            By clicking Agree & Join, you agree to the Privacy Policy.
+        </p>
+        <button class="agree-button">
+            Agree & Join
+        </button>
+    </div>
+
+    <div class="Tweet">
+        <img class="profile-img" src="cat6.jpg">
+        <input class="content-text" type="text" placeholder="What's happening?">
+        <button class="tweet-button">Tweet</button>
+    </div>
+</body>
+</html>
