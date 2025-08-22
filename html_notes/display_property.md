@@ -34,7 +34,7 @@
 
 ``` html 
     <style>
-        .grid-box {
+        .div-grid {
             display: grid;
             grid-template-columns: 10px 10px; /* 2 colums */ 
             row-gap: 10px;
@@ -46,4 +46,32 @@
 
 # Flexbox
 
+``` html 
+    <style>
+        .div-flexbox {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;    /* vertical */ 
+            justify-content: start; /* horizontal */
+        }
+    </style>
 
+```
+horizontal: start, end, space-between
+vertical: stretch, start, end, center
+
+# Flexbox Vs. Grid 
+
+## Similarities
+- 1fr == flex: 1
+- auto alignment 
+
+## Differences
+Grid:   
+- less flexible: layout predetermined by the grid style, elements inside follow
+- setup column width in advance    
+
+Flexbox:   
+- more flexible: layout determined by each element 
+- each element take the space need 
+  (similar to inline block but still maintain vertical alignment)   
