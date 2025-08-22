@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+</head>
+<body style="padding-bottom: 1000px;">
+    <!--grid of 2 cols with each width 100px-->
+    <div style="
+        display: grid;
+        grid-template-columns: 100px 100px;
+    ">
+        <div style="background-color: lightblue;">
+            div1
+        </div>
+        <div style="background-color: lightpink;">
+            div2
+            <p>text</p>
+        </div>
+    </div>
+
+
+    <!-- 3 cols of 100,100,200-->
+    <!-- 2 rows -->
+    <div style="
+        margin-top: 30px; 
+        display: grid;
+        grid-template-columns: 100px 100px 200px;
+    ">
+        <div style="background-color: lightblue;">
+            div1
+        </div>
+        <div style="background-color: lightpink;">
+            div2
+            <p>text</p>
+        </div>
+        <div style="background-color: lightblue;">
+            div3
+        </div>
+        <!-- more elements fit to the next row -->
+        <div style="background-color: lightpink;">
+            div2
+            <p>text</p>
+        </div>
+        <div style="background-color: lightblue;">
+            div3
+        </div>
+        <div style="background-color: lightpink;">
+            div2
+            <p>text</p>
+        </div>
+    </div>
+    
+    <!-- fr is the remaining amount of free space -->
+    <div style="
+        margin-top: 30px; 
+        display: grid;
+        grid-template-columns: 100px 1fr;
+    ">
+        <div style="background-color: lightblue;">
+            100px
+        </div>
+        <div style="background-color: lightpink;">
+            1fr
+            <p>text</p>
+        </div>
+    </div>
+
+    <!-- multiple fr split by ratio 1:2 below -->
+    <div style="
+        margin-top: 30px; 
+        display: grid;
+        grid-template-columns: 100px 1fr 2fr;
+    ">
+        <div style="background-color: lightblue;">
+            100px
+        </div>
+        <div style="background-color: lightpink;">
+            1fr
+        </div>
+        <div style="background-color: lightblue;">
+            2fr
+        </div>
+    </div>
+
+    <!-- large grid with gaps in between  -->
+    <div style="
+        margin-top: 30px; 
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px; 
+        row-gap: 40px; 
+    ">
+        <div style="background-color: lightblue; height: 200px;">
+            1fr
+        </div>
+        <div style="background-color: lightpink; height: 200px;">
+            1fr
+        </div>
+        <div style="background-color: lightblue; height: 200px;">
+            1fr
+        </div>
+        <div style="background-color: lightpink; height: 200px;">
+            1fr
+        </div>
+        <div style="background-color: lightblue; height: 200px;">
+            1fr
+        </div>
+        <div style="background-color: lightpink; height: 200px;">
+            1fr
+        </div>
+    </div>
+</body>
+</html>

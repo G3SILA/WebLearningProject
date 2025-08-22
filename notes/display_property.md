@@ -19,3 +19,31 @@
 
 - inline-block => block 
 - `display: block`
+
+
+## vertical and horizontal layout 
+- nested layout 
+- vertical layout: block
+- horizontal layout: inline-block
+**problem** 
+- alignment issue: unwanted space between `<div>` element
+- e.g. potential spaces in horizontal layout 
+
+
+# CSS Grid
+
+``` html 
+    <style>
+        .grid-box {
+            display: grid;
+            grid-template-columns: 10px 10px; /* 2 colums */ 
+            row-gap: 10px;
+            column-gap: 20px; 
+        }
+    </style>
+
+```
+
+# Flexbox
+
+
