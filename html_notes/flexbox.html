@@ -4,6 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flexbox</title>
+    <style>
+        p {
+            font-family: Arial;
+            margin: 0;
+        }
+        .item-flex {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            width: 500px; 
+            border: 1px solid rgb(177, 177, 177);
+            border-radius: 3px;
+            box-shadow: 0 0 2px rgb(164, 163, 163);
+            row-gap: 14px;
+            padding: 17px 14px;
+        }
+        .item-row{
+            display: flex; 
+            flex-direction: row; 
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title{
+            font-size: 18px;
+            vertical-align: middle;
+        }
+        .number {
+            font-size: 16px;
+            background-color: rgb(75, 107, 223);
+            color: white;
+            padding: 5px 12px;
+            border: none;
+            border-radius: 30px;
+        }
+        
+        /* inbox */
+        .inbox-module {
+            border: 1px solid grey;
+            box-shadow: 0 0 2px grey;
+            display: flex; 
+            flex-direction: column;
+            margin-top: 30px;
+            width: 500px;
+        }
+        .inbox-title {
+            color: grey; 
+            margin: 10px 10px;
+        }
+        .inbox-message {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 15px 15px; 
+            row-gap: 15px;
+        }
+        .profile-pic {
+            height: 50px;
+            width: 50px; 
+            object-fit: cover;
+            border-radius: 25px;
+        }
+        .text-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1; 
+            margin-left: 10px;
+            row-gap: 4px;
+        }
+        .sender-time {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sender-name {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .time {
+            color: grey;
+            font-size: 14px;
+        }
+        .email-title {
+            font-weight: bold;
+        }
+        .email-content {
+            font-size: 15px;
+            color: rgb(85, 85, 85);
+        }
+
+    </style>
+    
 </head>
 <body style="padding-bottom: 1000px;">
     <div style="
@@ -94,6 +186,64 @@
             width: 100px;
         ">
             100px
+        </div>
+    </div>
+
+    <div style="
+        display: flex;
+        border: 1px solid grey; 
+        flex-direction: row; 
+        align-items: center; 
+        justify-content: space-between; 
+        height: 60px; 
+    ">
+        <div style="background-color: pink;">item1</div>
+        <div style="background-color: pink;">item2</div>
+    </div>
+
+    <!-- notification -->
+    <div class="item-flex">
+        <div class="item-row">
+            <p class="title">Home</p>
+            <p class="number">14</p>
+        </div>
+        <div class="item-row">
+            <p class="title">Notifications</p>
+            <p class="number">3</p>
+        </div>
+        <div class="item-row">
+            <p class="title">Messages</p>
+            <p class="number">5</p>
+        </div>
+    </div>
+
+    <!-- inbox -->
+    <div class="inbox-module">
+        <div>
+            <p class="inbox-title">ALL INBOXES</p>
+        </div>
+        <div class="inbox-message">
+            <div>
+                <img class="profile-pic" src="cat6.jpg">
+            </div>
+            <div class="text-info">
+                <div class="sender-time">
+                    <div>
+                        <p class="sender-name">Chewy Promotions</p>
+                    </div>
+                    <div>
+                        <p class="time">4:58 PM</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="email-title">Biggest sales of the year</p>
+                </div>
+                <div>
+                    <p class="email-content">Hey there! We're writing to tell you about our
+                        newest pro...
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
