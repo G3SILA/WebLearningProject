@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal practice</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        .sidebar{
+            background-color: green;
+            top: 0;
+            right: 0;
+            bottom: 0; 
+            width: 100px; 
+            position: fixed; 
+            color: white;
+        }
+        .modal-page {
+            position: fixed; 
+            top: 0; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.6);
+            display: flex; 
+            justify-content: center;
+            align-items:center;
+        }
+        .modal-content {
+            position: relative; 
+            background-color: white;
+            width: 500px;
+            height: 150px;
+            border-radius: 6px;
+            padding: 20px 15px; 
+            display: flex;
+            flex-direction: column;
+            row-gap: 13px;
+            align-items: start;
+            top: 0; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .x-button {
+            position: fixed; 
+            right: 5px;
+            top: 5px;
+        }
+        .modal-title {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .modal-desc {
+            font-size: 23px;
+        }
+        .close-button {
+            font-size: 20px;
+            width: 78px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        right sidebar
+    </div>
+    <div class="modal-page">
+        <div class="modal-content">
+            <button class="x-button">X</button>
+            <div class="modal-title">Modal Title</div>
+            <div class="modal-desc">This is a modal</div>
+            <button class="close-button">Close</button>
+        </div>
+    </div>
+</body>
+</html>

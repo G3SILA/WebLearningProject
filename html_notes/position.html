@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postion</title>
+
+    <style>
+        .video-small-window {
+            height: 180px;
+            width: 320px;
+            background-color: grey;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 19;
+        }
+        .x-button {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-color: black;
+            color: white;
+            height: 25px;
+            width: 25px;
+            border-radius: 13px;
+            cursor: pointer;
+            z-index: 20;
+        }
+        .time-stamp {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background-color: black;
+            color: white;
+            height: 20px;
+            width: 35px;
+            font-size: 13px;
+            text-align: center;
+            z-index: 20;
+        }
+
+        .sell-container {
+            display: inline-block;
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        .sell-pic {
+            object-fit: cover;
+            width: 100%; 
+            height: 100%;
+        }
+        .discount {
+            position: absolute;
+            top: 10px;
+            right: 0px;
+            color: white;
+            background-color: black;
+            width: 70px;
+            height: 24px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .cart-container {
+            background-color: rgba(250,250,250,0);
+            z-index: 10;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition-duration: 0.5s;
+        }
+        .cart-container:hover {
+            background-color: rgba(250,250,250,0.7);
+        }
+        .cart-button {
+            border: 1px solid black;
+            background-color: rgba(250,250,250,0.3);
+            width: 82px; 
+            height: 29px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .cart-button:hover {
+            background-color: white;
+            transition-duration: 0.2s;
+        }
+    </style>
+</head>
+<body style="
+    height: 3000px;
+    padding-top: 50px;
+    padding-left: 80px; 
+">
+    <div style="
+        background-color: black;
+        color: white;
+        position: fixed; 
+        top: 0px; 
+        left: 0px; 
+        right: 50px;                            /*stretch to meet this requirement*/ 
+        height: 20px; 
+        z-index: 100;  /* higher = front */
+    ">
+        header
+    </div>
+
+    <div style="
+        background-color: green;
+        color: white;
+        position:fixed; 
+        top: 20px; 
+        bottom: 0; 
+        left: 0; 
+        width: 70px; 
+    ">
+        sidebar
+        <div style="
+            position: absolute; 
+            background-color: red;
+            top: 0; 
+            right: 0; 
+        ">
+            X
+        </div>
+    </div>
+
+    <div style="
+        position: absolute; 
+        background-color: red;
+        top: 60px; 
+        right: 10px; 
+    ">
+        absolute
+    </div>
+    <div style="
+        background-color: lightblue;
+        height: 200px;
+        width: 200px;  
+        position: static; 
+    ">
+        div1
+    </div>
+    <div style="
+        background-color: lightpink;
+        height: 200px;
+        width: 200px;  
+        position: relative; 
+    ">
+        div2
+        <div style="
+            position: absolute; 
+            background-color: red;
+            top: 60px; 
+            right: 10px; 
+        ">
+            absolute
+        </div>
+    </div>
+
+    <!-- sell -->
+    <div class="sell-container">
+        <img class="sell-pic" src="cat6.jpg">
+        <div class="discount">20% OFF</div>
+        <div class="cart-container">
+            <button class="cart-button">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- video -->
+    <div class="video-small-window">
+        <button class="x-button">X</button>
+        <div class="time-stamp">0:29</div>
+    </div>
+    
+</body>
+</html>

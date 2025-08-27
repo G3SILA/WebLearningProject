@@ -75,3 +75,17 @@ Flexbox:
 - more flexible: layout determined by each element 
 - each element take the space need 
   (similar to inline block but still maintain vertical alignment)   
+
+
+# position 
+
+Position: 
+- static (default)
+- fixed (floating above at fixed position - stick when scroll)
+- absolute (similar to fixed, but on the page, relative to the previous _fixed_ or _relative_ container)
+- relative (make inside absolute an absolute inside relative)
+
+
+
+fixed: **browser window**
+absolute: absolute position on **page**
