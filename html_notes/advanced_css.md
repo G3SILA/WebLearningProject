@@ -17,7 +17,8 @@
     }
 }
 ```
-
+**!!! Better to put @media section at the end**
+It can be covered by later style
 
 # Inheritance 
 - set the style on the outer element would pass down the style down to all elements inside
