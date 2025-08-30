@@ -4,6 +4,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0; 
+    background-color: white;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(186, 184, 184);
+    z-index: 100;
 }
 
 .left-section {
@@ -31,10 +40,11 @@
 }
 .search-bar {
     flex: 1; 
-    height: 36px;
+    height: 35px;
     font-size: 16px;
     border: 1px solid rgb(196, 196, 196); 
-    border-radius: 2px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
     box-shadow: inset 1px 2px rgba(0,0,0,0.05);
     width: 0;
 }
@@ -51,11 +61,54 @@
     border: 1px solid rgb(196, 196, 196); 
     margin-left: -1px;
     margin-right: 10px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.search-button, 
+.voice-search-button,
+.upload-icon-container,
+.youtube-app-icon-container,
+.notification-icon-container,
+.curr-user-profile-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-button .tooltip,
+.voice-search-button .tooltip,
+.upload-icon-container .tooltip,
+.youtube-app-icon-container .tooltip,
+.notification-icon-container .tooltip,
+.curr-user-profile-container .tooltip {
+    font-family: Roboto, Arial;
+    position: absolute;
+    background-color: grey;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    bottom: -30px;
+    opacity: 0;
+    transition: opacity 0.1s;
+    pointer-events: none;    /* no effects when hover */
+    white-space: nowrap;    /* doesn't switch line */ 
+}
+.search-button:hover .tooltip,
+.voice-search-button:hover .tooltip,
+.upload-icon-container:hover .tooltip,
+.youtube-app-icon-container:hover .tooltip,
+.notification-icon-container:hover .tooltip,
+.curr-user-profile-container:hover .tooltip {
+    opacity: 1;
 }
 .search-icon {
     height: 24px; 
-    margin-top: 4px; 
 }
+
+
 .voice-search-button {
     height: 40px;
     width: 40px;
@@ -65,7 +118,6 @@
 }
 .voice-search-icon {
     height: 24px; 
-    margin-top: 4px;
 }
 .right-section {
     display: flex;
@@ -80,9 +132,19 @@
 .youtube-app-icon,
 .notification-icon {
     height: 24px;
-
 }
 
+.notification-count {
+    position: absolute;
+    right: -5px;
+    top: -2px; 
+    background-color: rgb(215, 0, 0);
+    color: white;
+    font-family: Roboto, Arial;
+    font-size: 11px;
+    padding: 1px 5px;
+    border-radius: 15px;
+}
 .curr-user-profile {
     height: 36px;
     width: 36px; 

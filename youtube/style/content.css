@@ -11,7 +11,21 @@
             object-position: center;
         }
         .thumbnail-row {
-            margin-bottom: 12px;
+            margin-bottom: 9px;
+            position: relative; 
+        }
+        .video-time {
+            color: white; 
+            background-color: black;
+            z-index: 2;
+            position: absolute;
+            right: 5px;
+            bottom: 10px;
+            border-radius: 3px;
+            font-family: Roboto, Arial; 
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 4px;
         }
 
     .video-info-grid {
