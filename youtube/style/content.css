@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 16px;
-    row-gap: 40px; 
+    row-gap: 35px; 
 }
         .thumbnail {
             width: 100%;
@@ -51,3 +51,48 @@
             font-size: 12px;
             margin-bottom: 4px;
         }
+
+.channel-pic {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-tip {
+    position: absolute;
+    height: 65px;
+    width: 180px;
+    border: none;
+    box-shadow: 0 0 4px gray;
+    border-radius: 3px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+}
+.channel-pic:hover .profile-tip {
+    opacity: 1;
+}
+
+.profile-tip img {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.profile-author {
+    font-family: Roboto, Arial;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.profile-subscriber-stat {
+    font-family: Roboto, Arial;
+    color: grey;
+    font-size: 11px;
+}
