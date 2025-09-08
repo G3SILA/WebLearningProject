@@ -16,7 +16,8 @@
             console.log(`Cart Quantity: ${cartQuantity}`);
         ">Add to Cart</button>
         <button onclick="
-            --cartQuantity; 
+            if (cartQuantity <= 0) alert('No items in the cart!'); 
+            else --cartQuantity; 
             console.log(`Cart Quantity: ${cartQuantity}`);
         ">Remove from Cart</button>
         <button onclick="
