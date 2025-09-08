@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cart Quantity</title>
+    </head>
+    <body>
+        <p>Cart Quantity</p>
+
+        <button onclick="
+            console.log(`Cart Quantity: ${cartQuantity}`);
+        ">Show Quantity</button>
+        <button onclick="
+            cartQuantity += 1;
+            console.log(`Cart Quantity: ${cartQuantity}`);
+        ">Add to Cart</button>
+        <button onclick="
+            if (cartQuantity <= 0) alert('No items in the cart!'); 
+            else --cartQuantity; 
+            console.log(`Cart Quantity: ${cartQuantity}`);
+        ">Remove from Cart</button>
+        <button onclick="
+            cartQuantity = 0; 
+            console.log('Cart is reset.')
+            console.log(`Cart Quantity: ${cartQuantity}`);
+        ">Reset Cart</button>
+
+
+        <script>
+            let cartQuantity = 0; 
+
+
+
+            // other ways
+            const aConstVar = 10; 
+            var anOldWayForVarInJS = 20; 
+            /*
+                var allows for redeclaration - not safe
+                var has function scope, not block scope! 
+                var is not safe if uninitialized - undefined
+                let would throw an error if access out of scope
+            */
+
+            console.log(typeof aConstVar); 
+            
+        </script>
+    </body>
+</html>

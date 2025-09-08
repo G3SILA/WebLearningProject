@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>boolean</title>
+    </head>
+    <body>
+        <script>
+            // lowercase
+            console.log(true); 
+            console.log(false);
+
+            console.log(5 == '5.00'); // true
+            console.log(5 === '5.00'); // false
+
+            /* 
+                ==, != converts both sides to the same type
+                ===, !== type matters
+            */
+
+            // truthy value
+            if (5) console.log('truthy');
+
+            // falsy value
+            // 0, false, '', NaN, null, undefined
+
+            // NaN : not a number
+            console.log('text' / 5);
+
+            // ternary 
+            console.log(true? 'yes' : 'not'); 
+
+            // shortcut
+            const message = 5 && 'hello'; 
+            console.log(message +' '+ typeof message); // hello string
+            /*
+                equivalent to
+
+                let message; 
+                if (5) {
+                    message = 'hello';
+                }
+            */
+
+
+            const message2 = false && 'hello'; 
+            console.log(message2 + ' ' + typeof message2); // false boolean
+        </script>
+    </body>
+</html>
