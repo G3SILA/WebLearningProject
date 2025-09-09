@@ -7,14 +7,20 @@
 </head>
 <body>
     <script>
+        /* more organized, grouped, used together */ 
+
         // object
         const product = {
-            name: 'sock',    //property-value pair
+            name: 'sock',    //property-value pair, comma
             price: 1090
         }; // ;
 
         console.log(product); // {name: 'sock', price: 1090}
         console.log(product.name); 
+
+        // note: we can still modify the content of score object
+        //   cannot change assignent, e.g. score = {};
+        //   const reference
 
         // declare new property
         product.newProp = 'true';   
@@ -23,6 +29,54 @@
         //  remove property
         delete product.newProp;
         console.log(product); // {name: 'sock', price: 1090}
+
+        const product2 = {
+            name: 'shirt',
+            ['delivery-time']: 1,
+            'string': 2,
+            rating: {          //nested object
+                object: true,
+                count: 87
+            },
+            
+            // method
+            fun: function func1() {
+                console.log('function inside object');
+            }
+        };
+        console.log(product2.name);    //shirt
+        console.log(product2['name']); //shirt
+
+        // why? JS interprets it as minus 
+        // console.log(product2.delivery-time);    // err
+        console.log(product2['delivery-time']);    // 1
+        product2.fun();
+
+
+
+        /*
+        JSON - JavaScript Object Notation
+        similar syntax as JS object, but with "" and no method
+        more universal, store data
+        */
+
+
+        // object => JSON string
+        const jsonString = JSON.stringify(product2); 
+        console.log(jsonString); 
+        console.log(JSON.parse(jsonString));
+
+        // local storage
+        // vairables are temporary and deleted upon refresh
+
+
+        //store into
+                             // key      val
+        localStorage.setItem('message', 'hello'); 
+
+        // get out
+        console.log(localStorage.getItem('message')); // hello
+
     </script>
 </body>
 </html>
