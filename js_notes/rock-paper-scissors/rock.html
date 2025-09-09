@@ -16,6 +16,15 @@
     <button onclick="
         playGame('scissors');
     ">Scissors</button>
+
+    <button onclick="
+        score.wins = 0;
+        score.ties = 0;
+        score.losses = 0; 
+        localStorage.removeItem('score'); 
+        alert('Score has been reset.')
+    ">Reset Score</button>
+
     <script src="rock.js"></script>
 </body>
 </html>
