@@ -77,6 +77,48 @@
         // get out
         console.log(localStorage.getItem('message')); // hello
 
+
+
+        // null VS. undefined
+        // null: intentional 
+        // undefined: use default instead
+        // e.g. function func (p1 = 'default val') {}
+
+        /*
+            auto-boxing
+            warp string, number into object 
+        */
+        console.log(typeof true.toString()); //string
+        console.log(3.0.toString());  //3
+
+
+        /* objects are reference (but more like ptrs in C++ in terms of comparing and copying) */
+        const object1 = {
+            message: 'hello'
+        };
+        const object2 = object1; // copy the refernce only not object !!
+        object1.message = 'yes';
+        console.log(object1); // {message: 'yes'}
+        console.log(object2); // {message: 'yes'}
+
+        const object3 = {
+            message: 'yes'
+        };
+        console.log(object3 === object1); // false - b/c objects sit in different memory 
+        console.log(object2 === object1); // true
+
+
+        // shortcut
+        const object4 = {
+            message: 'yes',
+            price: 799
+        };
+        // const message = object4.message;
+        const {message, price} = object4;  //destructuring of same name!
+        console.log(message);  // yes
+        console.log(price); // 799
+        const {m1} = object4; 
+        console.log(m1);  //undefined 
     </script>
 </body>
 </html>
