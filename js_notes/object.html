@@ -119,6 +119,28 @@
         console.log(price); // 799
         const {m1} = object4; 
         console.log(m1);  //undefined 
+
+
+        const object5 = {
+            //message: message
+
+            //shorthand
+            message,
+
+            
+            /* 
+            method: function function1() {
+                console.log('method');
+            }
+            */
+            method() {
+                console.log('method');
+            }
+        };
+        console.log(object5); // {message: 'yes'}
+        object5.method(); 
+        
     </script>
 </body>
 </html>
+
