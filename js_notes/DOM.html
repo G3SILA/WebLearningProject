@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <button>hello</button>
+    <button class="js-button">Second Button</button>
+
+    <script>
+        // built-in object
+        // DOM: document object model
+
+        console.log(document.title); // DOM
+        console.log(typeof document.body); // object
+
+        document.title = 'Good Job!';
+        // document.body.innerHTML = '<button>Good!</button>';
+
+        console.log(document.body); // actual body displayed
+
+
+        // get any element (first) from the page and put it inside JS
+        console.log(document.querySelector('button'));
+        console.log(document.querySelector('button').innerHTML); // hello
+
+        // class
+        const buttonElem = document.querySelector('.js-button'); 
+        console.log(buttonElem); //actual second button
+    </script>
+</body>
+</html>
