@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle</title>
+    <style>
+        .toggle-button {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .is-toggled {
+            background-color: rgb(223, 223, 223);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-button">Gaming</button>
+    <button class="toggle-button">Music</button>
+    <button class="toggle-button">Tech</button>
+
+    <script>
+        const buttons = document.querySelectorAll('.toggle-button'); 
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {toggle(button)});
+        });
+
+        function toggle(button) {
+            if (!button.classList.contains('is-toggled')) {
+                // only one button can be on at a time
+                buttons.forEach(button => {button.classList.remove('is-toggled')});
+                button.classList.add('is-toggled'); 
+            } else {
+                button.classList.remove('is-toggled');
+            }
+        }
+    </script>
+</body>
+</html>
