@@ -1,0 +1,29 @@
+body{
+    background-color: rgb(26, 26, 26);
+    color: white;
+    font-family: Arial;
+}
+.move-icon {
+    height: 50px;
+}
+.move-button {
+    background-color: transparent;
+    border: 3px solid white;
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.result {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.reset-button {
+    background-color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+}

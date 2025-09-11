@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="rock.css">
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
     <button onclick="
         playGame('rock');
-    ">Rock</button>
+    " class="move-button">
+        <img src="img/rock-emoji.png" class="move-icon">
+    </button>
     <button onclick="
         playGame('paper');
-    ">Paper</button>
+    " class="move-button">
+        <img src="img/paper-emoji.png" class="move-icon">
+    </button>
     <button onclick="
         playGame('scissors');
-    ">Scissors</button>
+    " class="move-button">
+        <img src="img/scissors-emoji.png" class="move-icon">
+    </button>
 
-    <p class="js-result"></p>
-    <p class="js-moves"></p>
-    <p class="js-score"></p>
+    <p class="js-result result"></p>
+    <p class="js-moves move"></p>
+    <p class="js-score score"></p>
 
     <button onclick="
         score.wins = 0;
@@ -28,7 +35,7 @@
         localStorage.removeItem('score'); 
         updateScoreElement();
         alert('Score has been reset.')
-    ">Reset Score</button>
+    " class="reset-button">Reset Score</button>
 
     <script src="rock.js"></script>
 

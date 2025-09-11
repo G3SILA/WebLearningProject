@@ -41,7 +41,10 @@ function playGame(myChoice) {
 
     document.querySelector('.js-result').innerHTML = result;
     document.querySelector('.js-moves').innerHTML = 
-        `You: ${myChoice} - Computer: ${computerMove}.`;
+        `You
+        <img src="img/${myChoice}-emoji.png" class="move-icon">
+        <img src="img/${computerMove}-emoji.png"class="move-icon">
+        Computer.`;
     updateScoreElement();
 }
 
