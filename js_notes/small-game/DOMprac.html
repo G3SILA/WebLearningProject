@@ -37,6 +37,9 @@
             padding: 11px 15px;
             cursor: pointer;
         }
+        .error {
+            color: red;
+        }
         
     </style>
 </head>
@@ -86,8 +89,16 @@
             const inputElem = document.querySelector('.js-cost-input');
             let cost = Number(inputElem.value); 
             console.log(cost);
-            if (cost < 40) cost = ((cost * 100) + 1000)/100;
-            document.querySelector('.js-total-cost').innerText = `$${cost}`;
+            let costElem = document.querySelector('.js-total-cost');
+            if (cost < 0) {
+                costElem.innerText = 'Error! cost cannot be less than $0';
+                costElem.classList.add('error');
+            }
+            else {
+                if (cost < 40) cost = ((cost * 100) + 1000)/100;
+                costElem.innerText = `$${cost}`;
+                costElem.classList.remove('error');
+            }
         }
 
 
