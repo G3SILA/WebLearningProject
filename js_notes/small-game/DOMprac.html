@@ -4,25 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM practice</title>
+    <style> 
+        body {
+            font-family: Arial;
+        }
+
+        .subscribe-button {
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 40px;
+            padding: 10px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* class below would override property above */
+        .is-subscribed {
+            background-color: rgb(225, 225, 225);
+            color: black;
+        }
+
+        .cost-input {
+            font-size: 15px;
+            padding: 10px; /* all four sides 10px */
+        }
+        .calculate-button {
+            background-color: green;
+            color: white;
+            border: none;
+            font-size: 15px;
+            padding: 11px 15px;
+            cursor: pointer;
+        }
+        
+    </style>
 </head>
 <body>
     <p>YouTube Subscribe Button</p>
     <button onclick="
         subscribe();
-    " class="js-subscribe-button">Subscribe</button>
-
+    " class="js-subscribe-button subscribe-button">Subscribe</button>
+    <!-- use two different class to separate CSS and JS -->
     <div>
         <a href="../rock-paper-scissors/rock.html">Rock Paper Scissors</a>
     </div>
 
     <p>Amazon Shipping Calculator</p>
-    <input placeholder="Cost of order" class="js-cost-input"
+    <input placeholder="Cost of order" class="js-cost-input cost-input"
     onkeydown="
         handleCostKeydown(event);
     " >
     <button onclick="
         calculateTotal();
-    ">Calculate</button>
+    " class="calculate-button">Calculate</button>
     <p class="js-total-cost"></p>
 
 
@@ -31,6 +66,8 @@
         document.querySelector('.copy-input').innerText = inputElem.value;
     " class="input-for-copy">
     <p class="copy-input"></p>
+   
+    
     <script>
         // window object - browser
         // window.document - document
@@ -52,11 +89,20 @@
             if (cost < 40) cost = ((cost * 100) + 1000)/100;
             document.querySelector('.js-total-cost').innerText = `$${cost}`;
         }
+
+
+
         function subscribe() {
             // use innerText would ignore whitespaces 
             // much safer dealing with text
             const buttonElem = document.querySelector('.js-subscribe-button'); 
-            buttonElem.innerText === 'Subscribe'? buttonElem.innerText = 'Subscribed' : buttonElem.innerText = 'Subscribe';
+            if (buttonElem.innerText === 'Subscribe'){
+                buttonElem.innerText = 'Subscribed'
+                buttonElem.classList.add('is-subscribed');
+            } else {
+                buttonElem.innerText = 'Subscribe';
+                buttonElem.classList.remove('is-subscribed');
+            }
         }
     </script>
 </body>
