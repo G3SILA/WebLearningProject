@@ -6,30 +6,34 @@
         <title>Cart Quantity</title>
     </head>
     <body>
-        <p>Cart Quantity</p>
+        <p class="cart-quantity">Cart Quantity</p>
 
         <button onclick="
-            console.log(`Cart Quantity: ${cartQuantity}`);
+            updatePage();
         ">Show Quantity</button>
         <button onclick="
             cartQuantity += 1;
-            console.log(`Cart Quantity: ${cartQuantity}`);
+            updatePage();
         ">Add to Cart</button>
         <button onclick="
             if (cartQuantity <= 0) alert('No items in the cart!'); 
             else --cartQuantity; 
-            console.log(`Cart Quantity: ${cartQuantity}`);
+            updatePage();
         ">Remove from Cart</button>
         <button onclick="
             cartQuantity = 0; 
             console.log('Cart is reset.')
-            console.log(`Cart Quantity: ${cartQuantity}`);
+            updatePage();
         ">Reset Cart</button>
 
 
         <script>
-            let cartQuantity = 0; 
-
+            let cartQuantity = Number(localStorage.getItem('cart')) || 0; 
+            updatePage();
+            function updatePage(){
+                localStorage.setItem('cart', JSON.stringify(cartQuantity));
+                document.querySelector('.cart-quantity').innerText = `Cart Quantity: ${cartQuantity}`;
+            }
 
 
             // other ways
