@@ -1,5 +1,9 @@
-let todoList = [];
 document.querySelector('.add-button').addEventListener('click', addTodo);
+
+// initial 
+let todoList = JSON.parse(localStorage.getItem('list')) || [];
+
+renderTodoList();
 
 function addTodo() {
     const inputElem = document.querySelector('.todo-input');
@@ -11,6 +15,7 @@ function addTodo() {
 
 function renderTodoList() {
     let todoListHTML = '';
+
     for (let i = 0; i < todoList.length; i++) {
         const html = `
             <div>
@@ -29,4 +34,5 @@ function renderTodoList() {
         todoListHTML += html;
     }
     document.querySelector('.todo-list').innerHTML = todoListHTML; 
+    localStorage.setItem('list', JSON.stringify(todoList));
 }
