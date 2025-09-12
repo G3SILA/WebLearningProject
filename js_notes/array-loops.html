@@ -17,6 +17,8 @@
         myArray.splice(0, 1);  // remove 1 val from index 0 
         console.log(myArray);  // [20, 40, 100]
 
+        console.log(myArray.at(-1)); // 100, last element
+
 
         // loop
         let i = 1;
@@ -34,6 +36,43 @@
         }
         // Notice todoList.length doesn't have bracket! 
         // because length is a property not method
+
+
+        // takes an array of nums
+        function minMax(nums) {
+            if (nums.length === 0) return null; 
+            let minMax = {
+                min: nums[0], 
+                max: nums[0]
+            };
+            for (let i = 1; i < nums.length; ++i) {
+                if (nums[i] < minMax.min) minMax.min = nums[i];
+                if (nums[i] > minMax.max) minMax.max = nums[i];
+            }
+            console.log(minMax);
+            return minMax; 
+        }
+
+        minMax([]);
+        minMax([3]);
+        minMax([1,-3,5]);
+
+
+        // takes in an array of string
+        function countWords(words) {
+            const count = {};
+            
+            for (let i = 0; i < words.length; ++i) {
+                // access object through property name
+                // create if not exist
+                if (count[words[i]]) ++count[words[i]];
+                else count[words[i]] = 1; 
+            }
+            console.log(count);
+            return count;
+        }
+
+        countWords(['apple', 'apple', 'apple', 'grape']);
     </script>
 </body>
 </html>
