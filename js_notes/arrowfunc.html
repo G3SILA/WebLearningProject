@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Function</title>
+</head>
+<body>
+
+    <button class="click-button">
+        Click
+    </button>
+    <script>
+        // shortcut: less bracket 
+        const oneParam = param => {console.log(param + 1);} ;
+        
+        const oneLine = () => 2 + 3;   // no return and bracket
+        console.log(oneLine());
+
+        const eventListener1 = () => {console.log('hi');};
+        const clickButton = document.querySelector('.click-button');
+
+        // have multiple listener
+        clickButton.addEventListener('click', eventListener1);
+        clickButton.addEventListener('click', () => {console.log('click');});
+        // remove
+        clickButton.removeEventListener('click', eventListener1);
+
+
+        // filter
+        // creates a new array, if the function return true, put value in the array
+        const newarr = [1, -3, 5].filter((val, index) => {
+            return val >= 0;
+        });
+
+        console.log(newarr); // [1,5]
+
+
+        // map
+        // creates a new array and add *whatever returns* into the new array
+        
+        /* 
+            const newarr2 = [1,1,3].map((val, index) => {
+                return val *= 2; 
+            });
+        */ 
+        // shortcut
+        const newarr2 = [1,1,3].map(val => val *= 2);
+
+        console.log(newarr2); // [2,2,6]
+
+
+        /////////////////////////////////////////////
+
+        /*
+        closure: if a function has access to a value, it will always have access to that value
+        */ 
+
+        const arrtest1 = ['egg', 'apple', 'egg', 'egg', 'ham'];
+        const arrtest2 = arrtest1.filter((val) => {
+            if (val === 'egg') return false;
+            return true;
+        });
+        console.log(arrtest2);
+
+        const arrtest3 = arrtest1.filter((val) => {
+            if (val === 'egg') {
+                return false;
+            } 
+            return true;
+        });
+        console.log(arrtest3);
+
+    </script>
+</body>
+</html>

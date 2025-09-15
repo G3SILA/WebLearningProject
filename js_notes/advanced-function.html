@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced functions</title>
+</head>
+<body>
+
+    <button class="js-start-button">
+        Start
+    </button>
+
+    <button class="js-add-button">
+        Add to Cart
+    </button>
+    <div class="js-add-display"></div>
+
+    <div>
+        Messages
+        <button class="add-message">Add</button>
+        <button class="remove-message">Remove</button>
+    </div>
+
+    <script>
+        // funcitons are values
+
+        /*
+            var provides Hoisting - can use function before it is declared. 
+
+            var greeting = function() {
+                console.log('hello');
+            }
+        */
+        function greeting() {   // shortcut
+            console.log('hello');
+        }
+
+
+        const function1 = function() {         // anonymous function
+            console.log('hello2');
+        };
+
+        console.log(function1);
+        console.log(typeof function1); // function
+        function1(); // hello2
+
+        const object1 = {
+            nums: 2,
+            fun: function greeting() {
+                console.log('hello3');
+            }
+        }
+        object1.fun(); // hello3
+
+
+        function run(func) {
+            func();
+        }
+
+        run(function() {
+            console.log('hello4');
+        }); // hello4
+
+
+        //////////////////////////////////////////////////////////////////
+        
+        // (function to run after timeout, waitting time in ms)
+        setTimeout(function() {
+            console.log('timeout');
+        }, 3000); // 3s
+
+        console.log('next line');
+
+        // Asynchronous Code 
+        // won't wait for a line to finish before going to the next line
+        // setTimeout
+
+        // Synchronous Code - in general
+        // wait for one line to finish before going to the next
+
+        setInterval(function() {
+            console.log('interval');  // run this function every 300000 ms
+        }, 300000);
+
+        console.log('next line 2');
+
+
+        [
+            'make dinner',
+            'wash dishes',
+            'watch youtube'
+        ].forEach(function(value, index) {
+            // like continue in a for-loop
+            if(value === 'wash dishes') return;
+
+
+            // for each value in the array, save it in *value* and run function
+            console.log(value, index);
+        });
+
+
+        //////////////////////////////////////////////////////////////////
+
+        const startButtonElem = document.querySelector('.js-start-button'); 
+        startButtonElem.addEventListener('click', start);
+        function start() {
+            startButtonElem.innerText = 'Loading...';
+            setTimeout(() => {startButtonElem.innerText = 'Finished'}, 1000);
+        }
+
+        const addButtonElem = document.querySelector('.js-add-button');
+        const displayElem = document.querySelector('.js-add-display');
+        addButtonElem.addEventListener('click', display); 
+        let displayID; 
+        function display() {
+            displayElem.innerHTML = 'Added';
+            clearTimeout(displayID);
+            displayID = setTimeout(() => {displayElem.innerHTML = '';}, 2000);
+        }
+
+        let message = 2; 
+        setInterval(() => {
+            if (message) {
+                document.title = `(${message} New messages)`
+                setTimeout(() => {document.title = 'APP';}, 1000);
+            }
+        }, 2000);
+        document.querySelector('.add-message').addEventListener('click', () => {++message;});
+        document.querySelector('.remove-message').addEventListener('click', () => {
+            if (message) --message;
+            else document.title = 'APP';
+        });
+    </script>
+</body>
+</html>
+
+
