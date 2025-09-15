@@ -1,5 +1,5 @@
 // global
-                // null if first load with no score stored
+// getItem return null if first load with no score stored
 let score = JSON.parse(localStorage.getItem('score')) || {
         wins: 0,
         losses: 0,
@@ -8,12 +8,14 @@ let score = JSON.parse(localStorage.getItem('score')) || {
 
 updateScoreElement();
 
+//////////////////////////////////////////////
+// add event listeners
 document.body.addEventListener('keydown', (event) => {
     if (event.key === 'r') playGame('rock');
     if (event.key === 'p') playGame('paper');
     if (event.key === 's') playGame('scissors');
+    if (event.key === 'Backspace') resetClick();
 });
-
 
 document.querySelector('.js-rock-button').addEventListener('click', () => {playGame('rock');});
 
@@ -21,14 +23,30 @@ document.querySelector('.js-paper-button').addEventListener('click', () => {play
 
 document.querySelector('.js-scissors-button').addEventListener('click', () => {playGame('scissors');});
 
-document.querySelector('.js-reset-button').addEventListener('click', () => {
+document.querySelector('.js-reset-button').addEventListener('click', resetClick);
+
+
+///////////////////////////////////////////
+const messageElem = document.querySelector('.reset-message');
+
+function resetYes() {
     score.wins = 0;
     score.ties = 0;
     score.losses = 0; 
     localStorage.removeItem('score'); 
     updateScoreElement();
-    alert('Score has been reset.');
-});
+    messageElem.innerHTML = '';
+}
+
+function resetClick() {
+    messageElem.innerHTML = `
+        Are you sure you want to reset the score? 
+        <button class="reset-yes-button">Yes</button>
+        <button class="reset-no-button">No</button>
+    `;
+    document.querySelector('.reset-yes-button').addEventListener('click', resetYes);
+    document.querySelector('.reset-no-button').addEventListener('click', () => {messageElem.innerHTML = '';});
+}
 
 function playGame(myChoice) {
     let computerMove = pickComputerMove();
@@ -87,7 +105,8 @@ function updateScoreElement() {
     `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 }
 
-
+/////////////////////////////////////////////
+// autoplay button 
 let isAutoPlaying = false; 
 let intervalId; // to stop
 

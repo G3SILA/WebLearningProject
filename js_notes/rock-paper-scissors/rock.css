@@ -28,3 +28,7 @@ body{
     font-size: 15px;
     cursor: pointer;
 }
+
+.reset-message {
+    margin-top: 10px;
+}
