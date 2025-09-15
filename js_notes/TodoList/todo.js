@@ -16,23 +16,42 @@ function addTodo() {
 function renderTodoList() {
     let todoListHTML = '';
 
-    for (let i = 0; i < todoList.length; i++) {
-        const html = `
-            <div>
-                ${todoList[i]['name']}
-            </div>
-            <div>
-                ${todoList[i].date}
-            </div>
+    /*
+        for (let i = 0; i < todoList.length; i++) {
+            const html = `
+                <div>
+                    ${todoList[i]['name']}
+                </div>
+                <div>
+                    ${todoList[i].date}
+                </div>
 
-            <button onclick="
-                todoList.splice(${i}, 1);
-                renderTodoList();
-            "
-            class="delete-button">Delete</button>
-        `;
-        todoListHTML += html;
-    }
+                <button onclick="
+                    todoList.splice(${i}, 1);
+                    renderTodoList();
+                "
+                class="delete-button">Delete</button>
+            `;
+            todoListHTML += html;
+        }
+    */
+
+    todoList.forEach(function(todo, index) {
+        const {name, date} = todo; 
+        const html = `
+                <div>${name}</div>
+                <div>${date}</div>
+
+                <button onclick="
+                    todoList.splice(${index}, 1);
+                    renderTodoList();
+                "
+                class="delete-button">Delete</button>
+            `;
+            todoListHTML += html;
+    });
+
+
     document.querySelector('.todo-list').innerHTML = todoListHTML; 
     localStorage.setItem('list', JSON.stringify(todoList));
 }
