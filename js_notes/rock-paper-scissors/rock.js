@@ -64,3 +64,21 @@ function updateScoreElement() {
     document.querySelector('.js-score').innerHTML = 
     `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 }
+
+
+let isAutoPlaying = false; 
+let intervalId; // to stop
+
+function autoPlay() {
+    if (!isAutoPlaying) {
+        intervalId = setInterval(function(){
+            playGame(pickComputerMove());
+        }, 1000);
+        isAutoPlaying = true;
+        document.querySelector('.js-auto-button').innerText = 'Stop Play';
+    } else {
+        clearInterval(intervalId);
+        isAutoPlaying = false; 
+        document.querySelector('.js-auto-button').innerText = 'Auto Play';
+    }
+}
