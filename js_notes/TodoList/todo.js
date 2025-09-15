@@ -42,16 +42,23 @@ function renderTodoList() {
                 <div>${name}</div>
                 <div>${date}</div>
 
-                <button onclick="
-                    todoList.splice(${index}, 1);
-                    renderTodoList();
-                "
-                class="delete-button">Delete</button>
+                <button class="delete-button">Delete</button>
             `;
             todoListHTML += html;
     });
 
 
     document.querySelector('.todo-list').innerHTML = todoListHTML; 
+
+    // add js after having html buttons implemented
+    document.querySelectorAll('.delete-button')
+        .forEach((deleteButton, index) => {
+            deleteButton.addEventListener('click', () => {
+                todoList.splice(index, 1);
+                renderTodoList();
+            });
+        }
+    );
+
     localStorage.setItem('list', JSON.stringify(todoList));
 }
