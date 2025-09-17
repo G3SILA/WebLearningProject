@@ -1,8 +1,14 @@
 // modules only work with live server
 
 // import {variable as v} from 'path to file'  
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
+
+/* 
+    import * as cartModule from '../data/cart.js'
+    cartModule.cart
+    cartModule.addToCart('id');
+*/
 
 // products in data/products.js
 
@@ -66,46 +72,34 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 // store time-out id by product id
 const timeOutMessageId = {};
 
+function updateCartQuantity() {
+    let totalQuantity = 0; 
+
+    cart.forEach((cartItem) => {
+        totalQuantity += cartItem.quantity;
+    });
+    
+    document.querySelector('.js-cart-quantity').innerText = totalQuantity; 
+}
+
+function addCartMessage(productId) {
+    const messageElem = document.querySelector(`.js-added-message-${productId}`);
+    messageElem.classList.add('added-cart-message');
+
+    clearTimeout(timeOutMessageId[productId]);
+    timeOutMessageId[productId] = setTimeout(() => {
+        messageElem.classList.remove('added-cart-message');
+    }, 1500);
+}
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
         // productId is the data attribute data-product-id, with naming style auto changed
         const {productId} = button.dataset; // destructuring
-        const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
-        
-        let matchingItem; 
 
-        cart.forEach((item) => {
-            if (productId === item.productId) {
-                matchingItem = item;
-            }
-        });
-        if (matchingItem) {
-            matchingItem.quantity += quantity; 
-        } else {
-            cart.push({
-                productId,  //shorthand - same name
-                quantity
-            });
-        }
-
-        // quantity update
-        let totalQuantity = 0; 
-
-        cart.forEach((item) => {
-            totalQuantity += item.quantity;
-        });
-        
-        document.querySelector('.js-cart-quantity').innerText = totalQuantity; 
-
-        // massage displayed
-        const messageElem = document.querySelector(`.js-added-message-${productId}`);
-        messageElem.classList.add('added-cart-message');
-
-        clearTimeout(timeOutMessageId[productId]);
-        timeOutMessageId[productId] = setTimeout(() => {
-            messageElem.classList.remove('added-cart-message');
-        }, 1500);
-
+        addToCart(productId);
+        updateCartQuantity();
+        addCartMessage(productId);
     });
 });
 
