@@ -94,11 +94,8 @@ cart.forEach((cartItem) => {
     cartSummaryHTML += html;
 });
 
-function updateSummary() {
-    document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
-}
+document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
-updateSummary();
 
 document.querySelectorAll('.js-delete-link')
     .forEach((link) => {

@@ -68,6 +68,7 @@ products.forEach((product) => {
 });      // like html attribute, must start with data-
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML; 
+updateCartQuantity();
 
 // store time-out id by product id
 const timeOutMessageId = {};
