@@ -1,3 +1,8 @@
+// modules only work with live server
+
+// import {variable as v} from 'path to file'  
+import {cart} from '../data/cart.js';
+
 // products in data/products.js
 
 let productsHTML = ''; 
