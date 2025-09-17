@@ -1,7 +1,7 @@
 // modules only work with live server
 
 // import {variable as v} from 'path to file'  
-import {cart, addToCart} from '../data/cart.js';
+import {cart, addToCart, calculateCartQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 /* 
@@ -73,14 +73,8 @@ updateCartQuantity();
 // store time-out id by product id
 const timeOutMessageId = {};
 
-function updateCartQuantity() {
-    let totalQuantity = 0; 
-
-    cart.forEach((cartItem) => {
-        totalQuantity += cartItem.quantity;
-    });
-    
-    document.querySelector('.js-cart-quantity').innerText = totalQuantity; 
+function updateCartQuantity() {    
+    document.querySelector('.js-cart-quantity').innerText = calculateCartQuantity(); 
 }
 
 function addCartMessage(productId) {
