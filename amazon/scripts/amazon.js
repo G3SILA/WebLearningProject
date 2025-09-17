@@ -2,6 +2,7 @@
 
 // import {variable as v} from 'path to file'  
 import {cart} from '../data/cart.js';
+import {products} from '../data/products.js';
 
 // products in data/products.js
 
