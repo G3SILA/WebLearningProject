@@ -1,6 +1,11 @@
+// Named import
 import {cart, removeFromCart, calculateCartQuantity, updateQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import * as utilsModule from './utils/money.js';
+import {deliveryOptions} from '../data/deliveryOptions.js';
+
+// default import: import only one thing
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 let cartSummaryHTML = ''; 
 
@@ -54,46 +59,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-options-title">
                 Choose a delivery option:
                 </div>
-                <div class="delivery-option">
-                <input type="radio" checked
-                    class="delivery-option-input"
-                    name="delivery-option-${product.id}">
-                <div>
-                    <div class="delivery-option-date">
-                    Tuesday, June 21
-                    </div>
-                    <div class="delivery-option-price">
-                    FREE Shipping
-                    </div>
-                </div>
-                </div>
-                <div class="delivery-option">
-                <input type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${product.id}">
-                <div>
-                    <div class="delivery-option-date">
-                    Wednesday, June 15
-                    </div>
-                    <div class="delivery-option-price">
-                    $4.99 - Shipping
-                    </div>
-                </div>
-                </div>
-                <div class="delivery-option">
-                <input type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${product.id}">
-                <div>
-                    <div class="delivery-option-date">
-                    Monday, June 13
-                    </div>
-                    <div class="delivery-option-price">
-                    $9.99 - Shipping
-                    </div>
-                </div>
-                </div>
-            </div>
+                ${deliveryOptionsHTML(product, cartItem)}
             </div>
         </div>
     `;
@@ -102,6 +68,40 @@ cart.forEach((cartItem) => {
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 updateCartQuantity();
+
+function deliveryOptionsHTML(product, cartItem) {
+    let html = '';
+
+    deliveryOptions.forEach((option) => {
+        const today = dayjs();
+        const deliveryDate = today.add(
+            option.deliveryDays, 
+            'day'
+        );
+        const priceStr = option.priceCents === 0
+            ? 'FREE' 
+            : `$${utilsModule.formatCurrency(option.priceCents)} -`;
+
+        const isChecked = option.id === cartItem.deliveryOptionId;
+        
+        html += `<div class="delivery-option">
+            <input type="radio" 
+                ${isChecked? 'checked' : ''}
+                class="delivery-option-input"
+                name="delivery-option-${product.id}">
+            <div>
+                <div class="delivery-option-date">
+                    ${deliveryDate.format('dddd, MMMM D')}
+                </div>
+                <div class="delivery-option-price">
+                    ${priceStr} Shipping
+                </div>
+            </div>
+        </div>
+        `; 
+    });
+    return html;
+}
 
 document.querySelectorAll('.js-delete-link')
     .forEach((link) => {
@@ -123,8 +123,7 @@ document.querySelectorAll('.js-update-quantity-link')
     .forEach((link) => {
         link.addEventListener('click', () => {
             const {productId} = link.dataset;
-            document.querySelector(`.js-cart-item-container-${productId}`)
-                .classList.add('is-editing-quantity');
+            document.querySelector(`.js-cart-item-container-${productId}`).classList.add('is-editing-quantity');
         });
 });
 
@@ -138,7 +137,7 @@ document.querySelectorAll('.js-save-quantity-link')
 
             const ErrorElem = document.querySelector(`.js-cart-error-message-${productId}`);
             ErrorElem.innerHTML = '';
-            
+
             if (inputVal === 0) {
                 ErrorElem.innerHTML = 'Input cannot be 0. Use delete instead.';
             } else if (!inputVal || inputVal < 0) {
