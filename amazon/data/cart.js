@@ -43,3 +43,13 @@ export function calculateCartQuantity() {
     });
     return totalQuantity; 
 }
+
+export function updateQuantity(productId, newQuantity) {
+    for(let i = 0; i < cart.length; i++) {
+        if (cart[i].productId === productId) {
+            cart[i].quantity = newQuantity;
+            saveToStorage();
+            break;
+        } 
+    }
+}

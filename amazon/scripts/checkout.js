@@ -1,4 +1,4 @@
-import {cart, removeFromCart, calculateCartQuantity} from '../data/cart.js';
+import {cart, removeFromCart, calculateCartQuantity, updateQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import * as utilsModule from './utils/money.js';
 
@@ -33,19 +33,21 @@ cart.forEach((cartItem) => {
                 </div>
                 <div class="product-quantity">
                 <span>
-                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                    Quantity: <span class="quantity-label js-quantity-label-${product.id}">${cartItem.quantity}</span>
                 </span>
 
                 <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id="${product.id}">
                     Update
                 </span>
-                <input class="quantity-input">
+                <input class="quantity-input js-quantity-input-${product.id}">
                 <span class="save-quantity-link link-primary js-save-quantity-link"  data-product-id="${product.id}">Save</span>
 
                 <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${product.id}">
                     Delete
                 </span>
                 </div>
+
+                <div class="cart-error-message js-cart-error-message-${product.id}"></div>
             </div>
 
             <div class="delivery-options">
@@ -112,7 +114,7 @@ document.querySelectorAll('.js-delete-link')
         });
     });
 
-function updateCartQuantity() {    
+function updateCartQuantity() {
     document.querySelector('.js-cart-quantity').innerText = `${calculateCartQuantity()} items`; 
 }
 
@@ -132,5 +134,19 @@ document.querySelectorAll('.js-save-quantity-link')
             const {productId} = link.dataset;
             document.querySelector(`.js-cart-item-container-${productId}`)
                 .classList.remove('is-editing-quantity');
+            const inputVal = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
+
+            const ErrorElem = document.querySelector(`.js-cart-error-message-${productId}`);
+            ErrorElem.innerHTML = '';
+            
+            if (inputVal === 0) {
+                ErrorElem.innerHTML = 'Input cannot be 0. Use delete instead.';
+            } else if (!inputVal || inputVal < 0) {
+                ErrorElem.innerHTML = 'Invalid input';
+            } else {
+                updateQuantity(productId, inputVal);
+                updateCartQuantity();
+                document.querySelector(`.js-quantity-label-${productId}`).innerText = inputVal;
+            }
         });
     });

@@ -136,6 +136,11 @@
   display: none;
 }
 
+.cart-error-message {
+  margin-top: 5px;
+  color: red;
+}
+
 @media (max-width: 1000px) {
   .delivery-options {
     /* grid-column: 1 means this element will be placed
