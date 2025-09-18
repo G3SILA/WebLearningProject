@@ -26,40 +26,40 @@ cart.forEach((cartItem) => {
             </div>
 
             <div class="cart-item-details-grid">
-            <img class="product-image"
-                src="${product.image}">
+                <img class="product-image" src="${product.image}">
 
-            <div class="cart-item-details">
-                <div class="product-name">
-                    ${product.name}
+                <div class="cart-item-details">
+                    <div class="product-name">
+                        ${product.name}
+                    </div>
+                    <div class="product-price">
+                        $${utilsModule.formatCurrency(product.priceCents)}
+                    </div>
+                    <div class="product-quantity">
+                        <span>
+                            Quantity: <span class="quantity-label js-quantity-label-${product.id}">${cartItem.quantity}</span>
+                        </span>
+
+                        <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id="${product.id}">
+                            Update
+                        </span>
+                        <input class="quantity-input js-quantity-input-${product.id}">
+                        <span class="save-quantity-link link-primary js-save-quantity-link"  data-product-id="${product.id}">Save</span>
+
+                        <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${product.id}">
+                            Delete
+                        </span>
+                    </div>
+
+                    <div class="cart-error-message js-cart-error-message-${product.id}"></div>
                 </div>
-                <div class="product-price">
-                    $${utilsModule.formatCurrency(product.priceCents)}
+
+                <div class="delivery-options">
+                    <div class="delivery-options-title">
+                    Choose a delivery option:
+                    </div>
+                    ${deliveryOptionsHTML(product, cartItem)}
                 </div>
-                <div class="product-quantity">
-                <span>
-                    Quantity: <span class="quantity-label js-quantity-label-${product.id}">${cartItem.quantity}</span>
-                </span>
-
-                <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id="${product.id}">
-                    Update
-                </span>
-                <input class="quantity-input js-quantity-input-${product.id}">
-                <span class="save-quantity-link link-primary js-save-quantity-link"  data-product-id="${product.id}">Save</span>
-
-                <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${product.id}">
-                    Delete
-                </span>
-                </div>
-
-                <div class="cart-error-message js-cart-error-message-${product.id}"></div>
-            </div>
-
-            <div class="delivery-options">
-                <div class="delivery-options-title">
-                Choose a delivery option:
-                </div>
-                ${deliveryOptionsHTML(product, cartItem)}
             </div>
         </div>
     `;
@@ -85,19 +85,19 @@ function deliveryOptionsHTML(product, cartItem) {
         const isChecked = option.id === cartItem.deliveryOptionId;
         
         html += `<div class="delivery-option">
-            <input type="radio" 
-                ${isChecked? 'checked' : ''}
-                class="delivery-option-input"
-                name="delivery-option-${product.id}">
-            <div>
-                <div class="delivery-option-date">
-                    ${deliveryDate.format('dddd, MMMM D')}
+                    <input type="radio" 
+                        ${isChecked? 'checked' : ''}
+                        class="delivery-option-input"
+                        name="delivery-option-${product.id}">
+                    <div>
+                        <div class="delivery-option-date">
+                            ${deliveryDate.format('dddd, MMMM D')}
+                        </div>
+                        <div class="delivery-option-price">
+                            ${priceStr} Shipping
+                        </div>
+                    </div>
                 </div>
-                <div class="delivery-option-price">
-                    ${priceStr} Shipping
-                </div>
-            </div>
-        </div>
         `; 
     });
     return html;
