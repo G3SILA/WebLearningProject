@@ -1,5 +1,5 @@
 // Named import
-import {cart, removeFromCart, calculateCartQuantity, updateQuantity} from '../data/cart.js';
+import {cart, removeFromCart, calculateCartQuantity, updateQuantity, updateDeliveryOption} from '../data/cart.js';
 import {products} from '../data/products.js';
 import * as utilsModule from './utils/money.js';
 import {deliveryOptions} from '../data/deliveryOptions.js';
@@ -19,10 +19,24 @@ cart.forEach((cartItem) => {
         }
     }
 
+    const deliveryOptionId = cartItem.deliveryOptionId;
+    let deliveryOption;
+    deliveryOptions.forEach((option) => {
+        if (option.id === deliveryOptionId) {
+            deliveryOption = option; 
+        }
+    });
+    const today = dayjs();
+    const deliveryDate = today.add(
+        deliveryOption.deliveryDays, 
+        'day'
+    );
+    const dateStr = deliveryDate.format('dddd, MMMM D');
+
     const html = `
         <div class="cart-item-container js-cart-item-container-${product.id}">
             <div class="delivery-date">
-                Delivery date: Tuesday, June 21
+                Delivery date: ${dateStr}
             </div>
 
             <div class="cart-item-details-grid">
@@ -84,7 +98,9 @@ function deliveryOptionsHTML(product, cartItem) {
 
         const isChecked = option.id === cartItem.deliveryOptionId;
         
-        html += `<div class="delivery-option">
+        html += `<div class="delivery-option js-delivery-option" 
+                    data-product-id="${product.id}"
+                    data-delivery-option-id="${option.id}">
                     <input type="radio" 
                         ${isChecked? 'checked' : ''}
                         class="delivery-option-input"
@@ -149,3 +165,10 @@ document.querySelectorAll('.js-save-quantity-link')
             }
         });
     });
+
+document.querySelectorAll('.js-delivery-option').forEach((element)=> {
+    element.addEventListener('click', () => {
+        const {productId, deliveryOptionId} = element.dataset;
+        updateDeliveryOption(productId, deliveryOptionId);
+    });
+});
