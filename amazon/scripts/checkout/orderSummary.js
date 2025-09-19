@@ -3,6 +3,7 @@ import {cart, removeFromCart, calculateCartQuantity, updateQuantity, updateDeliv
 import {getProduct} from '../../data/products.js';
 import * as utilsModule from '../utils/money.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
+import {renderPaymentSummary} from './paymentSummary.js';
 
 // default import: import only one thing
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
@@ -29,7 +30,7 @@ export function renderOrderSummary() {
         );
         const dateStr = deliveryDate.format('dddd, MMMM D');
 
-        const html = `
+        const html = ` 
             <div class="cart-item-container js-cart-item-container-${product.id}">
                 <div class="delivery-date">
                     Delivery date: ${dateStr}
@@ -123,6 +124,7 @@ export function renderOrderSummary() {
 
                 document.querySelector(`.js-cart-item-container-${productId}`).remove();
                 updateCartQuantity();
+                renderPaymentSummary();
             });
         });
 
@@ -158,6 +160,7 @@ export function renderOrderSummary() {
                     updateQuantity(productId, inputVal);
                     updateCartQuantity();
                     document.querySelector(`.js-quantity-label-${productId}`).innerText = inputVal;
+                    renderPaymentSummary();
                 }
             });
         });
@@ -167,6 +170,7 @@ export function renderOrderSummary() {
             const {productId, deliveryOptionId} = element.dataset;
             updateDeliveryOption(productId, deliveryOptionId);
             renderOrderSummary(); // regenerate all html each time change option
+            renderPaymentSummary();
         });
     });
 }
