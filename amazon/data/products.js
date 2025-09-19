@@ -1,3 +1,11 @@
+export function getProduct(productId) {
+  for (let i = 0; i < products.length; ++i) {
+      if (products[i].id === productId) {
+          return products[i];
+      }
+  }
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
