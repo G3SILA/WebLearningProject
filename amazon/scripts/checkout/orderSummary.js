@@ -1,9 +1,10 @@
 // Named import
-import {cart, removeFromCart, calculateCartQuantity, updateQuantity, updateDeliveryOption} from '../../data/cart.js';
+import {cart, removeFromCart, updateQuantity, updateDeliveryOption} from '../../data/cart.js';
 import {getProduct} from '../../data/products.js';
 import * as utilsModule from '../utils/money.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import {renderPaymentSummary} from './paymentSummary.js';
+import {renderCheckoutHeader} from './checkoutHeader.js';
 
 // default import: import only one thing
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
@@ -77,8 +78,7 @@ export function renderOrderSummary() {
         cartSummaryHTML += html;
     });
     document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
-    updateCartQuantity();
-
+    renderCheckoutHeader();
 
     function deliveryOptionsHTML(product, cartItem) {
         let html = '';
@@ -128,11 +128,6 @@ export function renderOrderSummary() {
             });
         });
 
-    function updateCartQuantity() {
-        document.querySelector('.js-cart-quantity').innerText = `${calculateCartQuantity()} items`; 
-    }
-
-
     document.querySelectorAll('.js-update-quantity-link')
         .forEach((link) => {
             link.addEventListener('click', () => {
@@ -158,7 +153,7 @@ export function renderOrderSummary() {
                     ErrorElem.innerHTML = 'Invalid input';
                 } else {
                     updateQuantity(productId, inputVal);
-                    updateCartQuantity();
+                    renderCheckoutHeader();
                     document.querySelector(`.js-quantity-label-${productId}`).innerText = inputVal;
                     renderPaymentSummary();
                 }
