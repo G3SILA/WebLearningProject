@@ -2,12 +2,9 @@
 import {cart, removeFromCart, updateQuantity, updateDeliveryOption} from '../../data/cart.js';
 import {getProduct} from '../../data/products.js';
 import * as utilsModule from '../utils/money.js';
-import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
+import {deliveryOptions, getDeliveryOption, calculateDeliveryDate} from '../../data/deliveryOptions.js';
 import {renderPaymentSummary} from './paymentSummary.js';
 import {renderCheckoutHeader} from './checkoutHeader.js';
-
-// default import: import only one thing
-import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 
 // MVC - model view controller
@@ -24,12 +21,7 @@ export function renderOrderSummary() {
         const deliveryOptionId = cartItem.deliveryOptionId;
         const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-        const today = dayjs();
-        const deliveryDate = today.add(
-            deliveryOption.deliveryDays, 
-            'day'
-        );
-        const dateStr = deliveryDate.format('dddd, MMMM D');
+        const dateStr = calculateDeliveryDate(deliveryOption);
 
         const html = ` 
             <div class="cart-item-container js-cart-item-container-${product.id}">
@@ -84,11 +76,6 @@ export function renderOrderSummary() {
         let html = '';
 
         deliveryOptions.forEach((option) => {
-            const today = dayjs();
-            const deliveryDate = today.add(
-                option.deliveryDays, 
-                'day'
-            );
             const priceStr = option.priceCents === 0
                 ? 'FREE' 
                 : `$${utilsModule.formatCurrency(option.priceCents)} -`;
@@ -104,7 +91,7 @@ export function renderOrderSummary() {
                             name="delivery-option-${product.id}">
                         <div>
                             <div class="delivery-option-date">
-                                ${deliveryDate.format('dddd, MMMM D')}
+                                ${calculateDeliveryDate(option)}
                             </div>
                             <div class="delivery-option-price">
                                 ${priceStr} Shipping
