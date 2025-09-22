@@ -122,8 +122,8 @@ export function renderOrderSummary() {
                 const {productId} = link.dataset;
                 removeFromCart(productId);
 
-                document.querySelector(`.js-cart-item-container-${productId}`).remove();
-                updateCartQuantity();
+                // re-generate HTML
+                renderOrderSummary();
                 renderPaymentSummary();
             });
         });
