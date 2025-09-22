@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise</title>
+</head>
+<body>
+    <p></p>
+    <script src="https://unpkg.com/dayjs/dayjs.min.js"></script>
+    <script>
+        const today = dayjs(); 
+        document.querySelector('p').innerHTML = `${today.add(5, 'day').format('MMMM D')}`;
+        document.querySelector('p').innerHTML += `${today.add(1, 'month').format(' MMMM D')}`;
+        document.querySelector('p').innerHTML += `${today.subtract(1, 'month').format(' MMMM D')}`;
+        document.querySelector('p').innerHTML += `${today.format(' dddd')}`;
+
+    </script>
+
+    <script type="module" src="defaultImport.js"></script>
+</body>
+</html>
