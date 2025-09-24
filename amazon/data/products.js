@@ -31,6 +31,16 @@ class Product {
   }
 }
 
+// inheritance 
+class Clothing extends Product {
+  sizeChartLink; 
+
+  constructor(productDetails) {
+    super(productDetails); // call parent constructor 
+    this.sizeChartLink = productDetails.sizeChartLink; 
+  }
+}
+
 // map into a new array of classes! instead of objects
 export const products = [
   {
