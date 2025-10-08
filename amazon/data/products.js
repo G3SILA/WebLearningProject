@@ -69,6 +69,8 @@ class Appliance extends Product {
 }
 
 
+
+/*
 // map into a new array of classes! instead of objects
 export const products = [
   {
@@ -740,4 +742,28 @@ export const products = [
   }
   return new Product(productDetails);
 });
+
+*/
+
+export let products = []; 
+
+export function loadProducts(func) {
+  const xhr = new XMLHttpRequest(); 
+
+  xhr.addEventListener('load', () => {
+    products = JSON.parse(xhr.response).map((productDetails) => {
+      if (productDetails.type === 'clothing') {  
+        return new Clothing(productDetails);
+      } else if (productDetails.type === 'appliance') {
+        return new Appliance(productDetails); 
+      }
+      return new Product(productDetails);
+    }); 
+
+    func(); // callback - call in the future after all load done
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send(); 
+}
 

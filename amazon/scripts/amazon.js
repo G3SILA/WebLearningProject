@@ -2,7 +2,7 @@
 
 // import {variable as v} from 'path to file'  
 import {addToCart, calculateCartQuantity} from '../data/cart.js';
-import {products} from '../data/products.js';
+import {products, loadProducts} from '../data/products.js';
 
 /* 
     import * as cartModule from '../data/cart.js'
@@ -11,6 +11,11 @@ import {products} from '../data/products.js';
 */
 
 // products in data/products.js
+
+loadProducts(amazonGrid); 
+
+// callback in the future 
+function amazonGrid() {
 
 let productsHTML = ''; 
 
@@ -103,6 +108,6 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 });
 
 
-
+}
 
 
