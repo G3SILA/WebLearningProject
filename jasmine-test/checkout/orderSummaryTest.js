@@ -1,11 +1,20 @@
 import {renderOrderSummary} from '../../amazon/scripts/checkout/orderSummary.js';
 import {loadFromStorage, cart} from '../../amazon/data/cart.js';
 import * as CheckoutHeader from '../../amazon/scripts/checkout/checkoutHeader.js';
+import {loadProducts} from '../../amazon/data/products.js';
 
 describe('test suite: renderOrderSummary', () => {
     // for the suite
     const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6'; 
     const productId2 = '54e0eccd-8f36-462b-b68a-8182611d9add'; 
+    
+    // done is provided by jasmine 
+    // wait until done is called again (step finished)
+    beforeAll((done) => {
+        loadProducts(() => {
+            done(); // call done to continue running
+        });
+    });
 
     beforeEach(() => {
         document.querySelector('.js-test-container').innerHTML = `
