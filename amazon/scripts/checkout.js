@@ -13,7 +13,26 @@ import {loadProducts, loadProductsFetch} from '../data/products.js';
 // });
 
 async function loadPage(){
-    await loadProductsFetch();
+    try {
+        // throw 'err'; 
+        await loadProductsFetch();
+
+        /*
+        await new Promise((resolve, reject) => {
+            // throw 'err'; 
+            loadProducts(() => {
+                // throw doesn't work here in call back 
+                // cannot be catched by the catch below 
+
+                reject('err3'); // create error in the Promise
+            }); 
+        });
+        */
+       
+    } catch (error){
+        console.log(`error: ${error}`);
+    }
+
     renderOrderSummary();
     renderPaymentSummary();
 }
