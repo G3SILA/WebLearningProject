@@ -4,7 +4,13 @@ import {renderPaymentSummary } from './checkout/paymentSummary.js';
 // side effects import 
 import '../data/cart-oop.js'; 
 // import '../data/cart-class.js';
-import {loadProducts} from '../data/products.js';
+import {loadProducts, loadProductsFetch} from '../data/products.js';
+
+
+loadProductsFetch().then(() => {
+    renderOrderSummary();
+    renderPaymentSummary();
+});
 
 
 //!!! Note: Promise creates an independent sequence of "next"
@@ -12,14 +18,14 @@ import {loadProducts} from '../data/products.js';
 
 // similar to done in jasmine
 // only proceed to the next step when resolve() is called
-new Promise((resolve) => {
-    loadProducts(() => {
-        resolve();
-    });
-}).then (() => {
-    renderOrderSummary();
-    renderPaymentSummary();
-});
+// new Promise((resolve) => {
+//     loadProducts(() => {
+//         resolve();
+//     });
+// }).then (() => {
+//     renderOrderSummary();
+//     renderPaymentSummary();
+// });
 
 
 

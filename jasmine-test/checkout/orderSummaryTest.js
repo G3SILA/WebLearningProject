@@ -1,7 +1,7 @@
 import {renderOrderSummary} from '../../amazon/scripts/checkout/orderSummary.js';
 import {loadFromStorage, cart} from '../../amazon/data/cart.js';
 import * as CheckoutHeader from '../../amazon/scripts/checkout/checkoutHeader.js';
-import {loadProducts} from '../../amazon/data/products.js';
+import {loadProductsFetch} from '../../amazon/data/products.js';
 
 describe('test suite: renderOrderSummary', () => {
     // for the suite
@@ -11,9 +11,14 @@ describe('test suite: renderOrderSummary', () => {
     // done is provided by jasmine 
     // wait until done is called again (step finished)
     beforeAll((done) => {
-        loadProducts(() => {
-            done(); // call done to continue running
+        loadProductsFetch().then(() => {
+            done();
         });
+
+        // another way is to 
+        // return loadProductsFetch(); 
+        // so that jasmine would wait for the promise 
+        //      to finish before proceed to its test cases
     });
 
     beforeEach(() => {
