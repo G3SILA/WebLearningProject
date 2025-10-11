@@ -7,11 +7,38 @@ import '../data/cart-oop.js';
 import {loadProducts, loadProductsFetch} from '../data/products.js';
 
 
-loadProductsFetch().then(() => {
+// loadProductsFetch().then(() => {
+//     renderOrderSummary();
+//     renderPaymentSummary();
+// });
+
+async function loadPage(){
+    await loadProductsFetch();
     renderOrderSummary();
     renderPaymentSummary();
-});
+}
 
+loadPage(); 
+
+/*
+
+async function asyncFunc() {
+    console.log('this wraps everthing in a Promise and returns Promise');
+    await loadProductsFetch(); // wait to finish
+    const value = await new Promise((resolve) => {
+        loadCart(() => {
+            resolve('something');
+        });
+    });
+    console.log(value);        // saved in var
+    return 'this is message in resolve'; 
+}
+
+asyncFunc().then((value)=> {
+    console.log(value); 
+})
+
+*/
 
 //!!! Note: Promise creates an independent sequence of "next"
 //      so that many promises can run at the same time
