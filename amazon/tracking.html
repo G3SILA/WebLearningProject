@@ -88,5 +88,15 @@
         </div>
       </div>
     </div>
+
+    <script>
+      /*
+        URL parameters - after ? , in key=value pair
+        allow saving data in the url
+        e.g. http://127.0.0.1:5500/amazon/tracking.html?orderId=123
+      */
+      const url = new URL(window.location.href); 
+      url.searchParams.get('orderId'); // get value of a key in the url
+    </script>
   </body>
 </html>
