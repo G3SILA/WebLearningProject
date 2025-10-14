@@ -1,5 +1,13 @@
 export let cart;
 
+
+export async function loadCartFetch() {
+    const response = await fetch('https://supersimplebackend.dev/cart'); 
+    const data = await response.text();
+    console.log(data); 
+    return data; // resolve the value to data instead of undefined
+}
+
 loadFromStorage();
 
 function saveToStorage() {

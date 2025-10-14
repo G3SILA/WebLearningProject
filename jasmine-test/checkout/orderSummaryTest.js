@@ -10,10 +10,8 @@ describe('test suite: renderOrderSummary', () => {
     
     // done is provided by jasmine 
     // wait until done is called again (step finished)
-    beforeAll((done) => {
-        loadProductsFetch().then(() => {
-            done();
-        });
+    beforeAll(async () => {
+        await loadProductsFetch();
 
         // another way is to 
         // return loadProductsFetch(); 

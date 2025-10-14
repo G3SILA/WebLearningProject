@@ -3,6 +3,7 @@ import {renderPaymentSummary } from './checkout/paymentSummary.js';
 // run everything inside but not import any var or fcn
 // side effects import 
 import '../data/cart-oop.js'; 
+import {loadCartFetch} from '../data/cart.js';
 // import '../data/cart-class.js';
 import {loadProducts, loadProductsFetch} from '../data/products.js';
 
@@ -15,20 +16,12 @@ import {loadProducts, loadProductsFetch} from '../data/products.js';
 async function loadPage(){
     try {
         // throw 'err'; 
-        await loadProductsFetch();
 
-        /*
-        await new Promise((resolve, reject) => {
-            // throw 'err'; 
-            loadProducts(() => {
-                // throw doesn't work here in call back 
-                // cannot be catched by the catch below 
+        await Promise.all([
+            loadProductsFetch(),
+            loadCartFetch()
+        ]); 
 
-                reject('err3'); // create error in the Promise
-            }); 
-        });
-        */
-       
     } catch (error){
         console.log(`error: ${error}`);
     }
@@ -39,7 +32,22 @@ async function loadPage(){
 
 loadPage(); 
 
-/*
+
+
+
+/* REJECT
+            await new Promise((resolve, reject) => {
+                // throw 'err'; 
+                loadProducts(() => {
+                    // throw doesn't work here in call back 
+                    // cannot be catched by the catch below 
+
+                    reject('err3'); // create error in the Promise
+                }); 
+            });
+*/
+
+/* ASYNC
 
 async function asyncFunc() {
     console.log('this wraps everthing in a Promise and returns Promise');
