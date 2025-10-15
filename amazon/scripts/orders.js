@@ -2,8 +2,10 @@ import {orders} from '../data/orders.js';
 import {intoMonthDay} from './utils/time.js';
 import {formatCurrency} from './utils/money.js';
 import {getProduct} from '../data/products.js';
+import {addToCart, calculateCartQuantity} from '../data/cart.js';
 
 function renderOrdersPage() {
+    renderCartQuantity();
     orders.forEach((order) => {
         console.log(order);
 
@@ -54,7 +56,7 @@ function renderOrdersPage() {
                         <div class="product-quantity">
                             Quantity: ${product.quantity}
                         </div>
-                        <button class="buy-again-button button-primary">
+                        <button class="buy-again-button button-primary js-buy-again-${matchingProduct.id}">
                             <img class="buy-again-icon" src="images/icons/buy-again.png">
                             <span class="buy-again-message">Buy it again</span>
                         </button>
@@ -68,9 +70,20 @@ function renderOrdersPage() {
                         </a>
                     </div>
                 </div>`;
-     
+            
+            document.querySelector(`.js-buy-again-${matchingProduct.id}`)
+                .addEventListener('click', () => {
+                    addToCart(matchingProduct.id, 1); 
+                    renderCartQuantity();
+                });
         });
     }); 
 }
 
 renderOrdersPage();
+
+function renderCartQuantity() {
+    const cartQuantity = calculateCartQuantity();
+    document.querySelector('.js-cart-quantity')
+        .innerHTML = `${cartQuantity}`;
+}

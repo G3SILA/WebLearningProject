@@ -18,8 +18,7 @@ export function loadFromStorage() {
     cart = JSON.parse(localStorage.getItem('cart')) || [];
 }
 
-export function addToCart(productId) {
-    const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+export function addToCart(productId, quantity) {
     let matchingItem; 
     cart.forEach((cartItem) => {
         if (productId === cartItem.productId) {

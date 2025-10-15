@@ -101,7 +101,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         // productId is the data attribute data-product-id, with naming style auto changed
         const {productId} = button.dataset; // destructuring
 
-        addToCart(productId);
+        addToCart(productId, Number(document.querySelector(`.js-quantity-selector-${productId}`).value));
         updateCartQuantity();
         addCartMessage(productId);
     });

@@ -17,7 +17,7 @@ describe('test suite: addToCart', () => {
         spyOn(document, 'querySelector').and.callFake(() => {return { value: "1" };}); 
 
         loadFromStorage(); // re-load cart with mocked localStorage after load cart in import
-        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6', 1);
 
         expect(cart.length).toEqual(1);
         // only works if mocked by spyOn
@@ -44,7 +44,7 @@ describe('test suite: addToCart', () => {
         loadFromStorage();
         spyOn(document, 'querySelector').and.callFake(() => {return { value: "1" };}); 
 
-        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6', 1);
 
         expect(cart.length).toEqual(1);
         expect(localStorage.setItem).toHaveBeenCalledTimes(1); 
