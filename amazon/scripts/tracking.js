@@ -39,13 +39,13 @@ function loadPage() {
         <img class="product-image" src="${productDetails.image}">
 
         <div class="progress-labels-container">
-          <div class="progress-label js-progress-preparing">
+          <div class="progress-label ${deliveryProgress < 50 ? 'current-status' : ''}">
             Preparing
           </div>
-          <div class="progress-label js-progress-shipped">
+          <div class="progress-label ${deliveryProgress >= 50 && deliveryProgress < 100? 'current-status' : ''}">
             Shipped
           </div>
-          <div class="progress-label js-progress-delivered">
+          <div class="progress-label ${deliveryProgress >= 100? 'current-status' : ''}">
             Delivered
           </div>
         </div>
@@ -56,13 +56,6 @@ function loadPage() {
       </div>
     `;
     
-    if (deliveryProgress < 50) {
-        document.querySelector('.js-progress-preparing').classList.add('current-status');
-    } else if (deliveryProgress < 100) {
-        document.querySelector('.js-progress-shipped').classList.add('current-status');
-    } else {
-        document.querySelector('.js-progress-delivered').classList.add('current-status');
-    }
 }
 
 loadPage();
