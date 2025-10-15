@@ -7,3 +7,7 @@ export function intoMonthDay(isoString) {
 export function trackingDay(isoString) {
     return dayjs(isoString).format('dddd, MMMM D');
 }
+
+export function dayDifference(startISO, endISO) {
+    return dayjs(endISO).diff(dayjs(startISO), 'day');
+}
