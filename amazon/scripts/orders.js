@@ -2,7 +2,7 @@ import {orders} from '../data/orders.js';
 import {intoMonthDay} from './utils/time.js';
 import {formatCurrency} from './utils/money.js';
 import {getProduct} from '../data/products.js';
-import {addToCart, calculateCartQuantity} from '../data/cart.js';
+import {addToCart, renderCartQuantity} from '../data/cart.js';
 
 function renderOrdersPage() {
     renderCartQuantity();
@@ -63,7 +63,7 @@ function renderOrdersPage() {
                     </div>
                     
                     <div class="product-actions">
-                        <a href="tracking.html">
+                        <a href="tracking.html?orderId=${orderId}&productId=${matchingProduct.id}">
                             <button class="track-package-button button-secondary">
                             Track package
                             </button>
@@ -82,8 +82,3 @@ function renderOrdersPage() {
 
 renderOrdersPage();
 
-function renderCartQuantity() {
-    const cartQuantity = calculateCartQuantity();
-    document.querySelector('.js-cart-quantity')
-        .innerHTML = `${cartQuantity}`;
-}
