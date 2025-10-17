@@ -18,6 +18,11 @@ export function loadFromStorage() {
     cart = JSON.parse(localStorage.getItem('cart')) || [];
 }
 
+export function clearCart() {
+    cart = []; 
+    saveToStorage();
+}
+
 export function addToCart(productId, quantity) {
     let matchingItem; 
     cart.forEach((cartItem) => {

@@ -1,4 +1,4 @@
-import {orders} from '../data/orders.js';
+import {orders, removeRecentOrder} from '../data/orders.js';
 import {intoMonthDay} from './utils/time.js';
 import {formatCurrency} from './utils/money.js';
 import {getProduct} from '../data/products.js';
@@ -8,6 +8,11 @@ function renderOrdersPage() {
     renderCartQuantity();
     orders.forEach((order) => {
         console.log(order);
+
+        if (order.errorMessage) {
+            removeRecentOrder();
+            return; 
+        }
 
         const isoString = order.orderTime;
         const orderId = order.id; 

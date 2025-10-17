@@ -5,6 +5,12 @@ export function addOrder(order) {
     saveToStorage(); 
 }
 
+export function removeRecentOrder() {
+    orders.shift(); 
+    saveToStorage();
+}
+
+
 function saveToStorage() {
     localStorage.setItem('orders', JSON.stringify(orders)); 
 }
