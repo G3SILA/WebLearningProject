@@ -123,6 +123,13 @@ document.querySelector('.js-search-button').addEventListener('click', () => {
     window.location.href = `amazon.html?search=${input}`;    
 });
 
+document.querySelector('.js-search-bar').addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        const input = document.querySelector('.js-search-bar').value;
+        window.location.href = `amazon.html?search=${input}`;
+    }
+});
+
 }
 
 
