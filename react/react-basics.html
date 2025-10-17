@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <div class="js-second-container"></div>
+    <div class="js-third"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel: JS compiler, translate other languages into JS 
+         e.g. use JavaScript XML, JSX in React, translate to JS -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script type="text/babel">
+        /*
+            const button = document.createELement('button');
+            button.innerHTML = 'hello'; 
+        */
+        const button = <button>hello</button>; // write html directly in JS
+        const paragraph = <p>paragraph yeah yeah</p>; 
+        const div = (
+            <div>
+                <button>hello</button>
+                <p>paragraph yeah yeah {2 + 2} </p> 
+            </div>
+        ); // insert JS into JSX, similar to string intrapolation 
+        
+        const container = document.querySelector('.js-container');
+        // setup react
+        ReactDOM.createRoot(container).render(div);
+
+        const name = 'Gesila';
+        const paragraph2 = <p>My Name is {name}!</p>; 
+        const container2 = document.querySelector('.js-second-container');
+        ReactDOM.createRoot(container2).render(paragraph);
+        ReactDOM.createRoot(container2).render(paragraph2); // overwrite paragraph
+
+
+
+        // CLOCK
+        const container3 = document.querySelector('.js-third');
+        
+        const root = ReactDOM.createRoot(container3); 
+
+        setInterval(() => {
+            root.render(
+                <div>
+                    <p>Today is {dayjs().format('MMMM D')}</p>
+                    <p>Current Time: {dayjs().format('HH:mm:ss')}</p>
+                </div>
+            ); 
+        }, 1000);
+        
+
+    </script>
+  </body>
+</html>
