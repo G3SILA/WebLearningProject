@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script type="text/babel">
+        // component name must start with Capital letter
+        function ChatInput() {
+            // JSX requires closing tag on input
+            // <input /> is a shortcut for <input></input>
+
+            // can only return one element at a time
+            // fragment: only brackets <>, similar to <div> but doesn't add extra div element 
+            return (
+                <>
+                    <input placeholder="Send a message to Chatbot" size="30" />  
+                    <button>Send</button> 
+                </>
+            ); // size: # of characters fit 
+        }
+        
+        // props is an object containing all the attributes
+        // can also destructuring in parameters: 
+        // e.g.  function ChatMessage({message, sender}) {}
+        function ChatMessage(props) {
+            // const message = props.message; 
+            // const sender = props.sender;
+
+            const {message, sender} = props; 
+
+            if (sender === 'robot') {
+                return (
+                    <div>
+                        <img src="robot.png" width="50" />
+                        {message}
+                    </div>
+                );
+            }
+            return (
+                <div>
+                    {message}
+                    <img src="user.png" width="50" />
+                </div>
+            );
+        }
+
+        // component syxtax: create our own HTML element
+        // also works: {ChatInput()}
+        //             <ChatInput></ChatInput>
+        const app = (
+            <>
+                <ChatInput /> 
+                <ChatMessage message="hello chatbot" sender="user" />
+                <ChatMessage message="Hello! How can I help you?" sender="robot" />
+                <ChatMessage message="today date?" sender="user" />
+                <ChatMessage message="Today is Oct 20" sender="robot" />
+            </>
+        );
+
+        const container = document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render(app); 
+    </script>
+</body>
+</html>
