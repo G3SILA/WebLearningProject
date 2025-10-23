@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="js-container"></div>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function centToDollar(cent) {
+            return (cent / 100).toFixed(2); 
+        }
+
+        function App() {
+            return (
+                <>
+                    <p>hello, welcome to my website</p>
+                    <LoginForm />
+                </>
+            );
+        }
+
+        function LoginForm() {
+            return (
+                <>
+                    <div>
+                        <input type="text" placeholder="Email" />
+                    </div>
+                    <div>
+                        <input type="password" placeholder="Password" />
+                    </div>
+                    <button>Login</button>
+                    <button>Sign up</button>
+
+                    <ProductDetails 
+                        name="Cotton socks"
+                        priceCents="1090"
+                        discountPrice="545"
+                        img="img/cotton-socks.png"
+                    />
+                    <ProductDetails 
+                        name="Tennis balls"
+                        priceCents="600"
+                        img="img/tennis-balls.png"
+                    />
+                    <ProductDetails 
+                        name="Plain T-Shirt"
+                        priceCents="799"
+                        img="img/plain-t-shirt.png"
+                    />
+                </>
+            );
+        }
+
+        function ProductDetails(prop) {
+            const {name, priceCents, discountPrice, img} = prop; 
+            return (
+                <>
+                    <p>{name}</p>
+                    <img src={img} width="60"/>
+                    {discountPrice? <del> <p>${centToDollar(priceCents)}</p> </del> : 
+                                          <p>${centToDollar(priceCents)}</p>}
+
+                    {discountPrice && 
+                        <p>Discount Price: ${centToDollar(discountPrice)}</p>
+                    }
+                    <button>Add to Cart</button>
+                </>
+            );
+        }
+        
+        const container = document.querySelector('.js-container'); 
+        ReactDOM.createRoot(container).render(<App />);
+        
+    </script>
+</body>
+</html>
