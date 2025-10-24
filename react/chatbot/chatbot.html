@@ -61,17 +61,72 @@
             );
         }
 
+        function ChatMessages() {
+            // state bounds HTML and data, auto-updates HTML
+            const [chatMessages, setChatMessages]= React.useState([{
+                message: "hello chatbot",
+                sender: "user",
+                id: 'id1'         //necessary in React, unique key for each Component in array
+            }, {
+                message: "Hello! How can I help you?",
+                sender: "robot",
+                id: 'id2'
+            }, {
+                message: "today date?",
+                sender: "user",
+                id: 'id3'
+            }, {
+                message: "Today is Oct 20",
+                sender: "robot",
+                id: 'id4'
+            }]); 
+
+            
+            /*
+                // current data, first element 
+                const chatMessages = array[0];
+                // function to update html, second element
+                const setChatMessages = array[1]; // updater function
+            */
+
+            function sendMessage() {
+                // copy the array into this new array
+                // ...is the spread operator
+                setChatMessages([
+                    ...chatMessages, 
+                    {
+                        message: 'test',
+                        sender: 'user',
+                        id: crypto.randomUUID()
+                    }
+                ]); 
+            }
+
+            return (
+                <>
+                    {chatMessages.map((chatMessage) => {
+                        return (
+                            <ChatMessage 
+                                message={chatMessage.message}
+                                sender={chatMessage.sender} 
+                                key={chatMessage.id}
+                            />
+                        );
+                    })}
+                </>
+            );
+        }
+
+
         // component syxtax: create our own HTML element
         // also works: {ChatInput()}
         //             <ChatInput></ChatInput>
         function App() {
+
             return (
                 <>
                     <ChatInput /> 
-                    <ChatMessage message="hello chatbot" sender="user" />
-                    <ChatMessage message="Hello! How can I help you?" sender="robot" />
-                    <ChatMessage message="today date?" sender="user" />
-                    <ChatMessage message="Today is Oct 20" sender="robot" />
+                    <ChatMessages />
                 </>
             );
         }
