@@ -124,8 +124,19 @@
         }
 
         function ChatMessages({chatMessages}) {
+            // hook, save an HTML element from component
+            const chatMessagesRef = React.useRef(null);
+            // hook in React, runs a function after the component is created/updated
+            React.useEffect(() => {
+                const containerElem = chatMessagesRef.current;
+                if (containerElem) {
+                    containerElem.scrollTop = containerElem.scrollHeight; 
+                }
+            }, [chatMessages]); // second paramter stores data that needs to be tracked
+            // Dependency Array: control when useEffect runs
+            
             return (
-                <div className="chat-messages-container">
+                <div className="chat-messages-container" ref={chatMessagesRef}>
                     {chatMessages.map((chatMessage) => {
                         return (
                             <ChatMessage 
