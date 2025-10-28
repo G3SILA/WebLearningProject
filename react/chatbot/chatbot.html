@@ -11,6 +11,8 @@
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <script type="text/babel">
@@ -25,15 +27,28 @@
             function sendMessage() {
                 // copy the array into this new array
                 // ...is the spread operator
-                setChatMessages([
+                const newChatMessages = [
                     ...chatMessages, 
                     {
                         message: inputText,
                         sender: 'user',
                         id: crypto.randomUUID()
                     }
+                ];
+                // store in a variable because ChatMessages is not updated
+                //   immediately, but after the function is done. 
+                setChatMessages(newChatMessages); 
+
+                const response = Chatbot.getResponse(inputText);
+                setChatMessages([
+                    ...newChatMessages, 
+                    {
+                        message: response,
+                        sender: 'robot',
+                        id: crypto.randomUUID()
+                    }
                 ]); 
-                
+
                 // matches with value={inputText}, to clear the input box after sent
                 setInputText('');
             }
