@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C3</title>
+</head>
+<body>
+    <div class="js-container"></div>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Counter({counter, setCounter}) {
+            // const [counter, setCounter] = React.useState(0); 
+
+            return (
+                <button
+                    onClick={() => { 
+                        setCounter(counter + 1);
+                    }}>
+                    Clicked {counter} {counter === 1? 'time' : 'times'}
+                </button>
+            ); 
+        }
+
+        function APP() {
+            // lifting state, synchronous counter
+            const [counter, setCounter] = React.useState(0); 
+            return (
+                <>
+                    <Counter 
+                        counter={counter}
+                        setCounter={setCounter}
+                    />
+                    <Counter 
+                        counter={counter}
+                        setCounter={setCounter}
+                    />
+                    <button
+                        onClick={() => {
+                            setCounter(0);
+                        }}>Reset</button>
+                </>
+            );
+        }
+
+        ReactDOM.createRoot(document.querySelector('.js-container')).render(<APP />);
+    </script>
+</body>
+</html>
