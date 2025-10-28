@@ -19,12 +19,18 @@
         // component name must start with Capital letter
         function ChatInput({chatMessages, setChatMessages}) {
             const [inputText, setInputText] = React.useState('');
+            const [isLoading, setIsLoading] = React.useState(false); 
 
             function saveInputText(event) {
                 setInputText(event.target.value); 
             }
             
-            function sendMessage() {
+            async function sendMessage() {
+                if (isLoading || inputText === '') return; 
+                setIsLoading(true); 
+                // matches with value={inputText}, to clear the input box after sent
+                setInputText('');
+
                 // copy the array into this new array
                 // ...is the spread operator
                 const newChatMessages = [
@@ -37,9 +43,18 @@
                 ];
                 // store in a variable because ChatMessages is not updated
                 //   immediately, but after the function is done. 
-                setChatMessages(newChatMessages); 
+                // setChatMessages(newChatMessages); 
+                
+                setChatMessages([
+                    ...newChatMessages, 
+                    {
+                        message: 'Loading...',
+                        sender: 'robot',
+                        id: crypto.randomUUID()
+                    }
+                ]); 
 
-                const response = Chatbot.getResponse(inputText);
+                const response = await Chatbot.getResponseAsync(inputText);
                 setChatMessages([
                     ...newChatMessages, 
                     {
@@ -48,9 +63,7 @@
                         id: crypto.randomUUID()
                     }
                 ]); 
-
-                // matches with value={inputText}, to clear the input box after sent
-                setInputText('');
+                setIsLoading(false); 
             }
 
             // JSX requires closing tag on input
@@ -65,6 +78,10 @@
                         size="30" 
                         onChange={saveInputText}
                         value={inputText}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') sendMessage();
+                            else if (event.key === 'Escape')  setInputText('');
+                        }}
                     />  
                     <button 
                         onClick= {sendMessage}
