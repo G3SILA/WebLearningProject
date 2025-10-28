@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
+    <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
     <div class="js-container"></div>
@@ -72,7 +73,7 @@
             // can only return one element at a time
             // fragment: only brackets <>, similar to <div> but doesn't add extra div element 
             return (
-                <>
+                <div className="chat-input-container">
                     <input 
                         placeholder="Send a message to Chatbot" 
                         size="30" 
@@ -82,12 +83,15 @@
                             if (event.key === 'Enter') sendMessage();
                             else if (event.key === 'Escape')  setInputText('');
                         }}
+                        className="chat-input"
                     />  
                     <button 
                         onClick= {sendMessage}
+                        className="send-button"
                     >Send</button> 
-                </>
+                    </div>
             ); // size: # of characters fit 
+            // Notice React use className instead of class!
         }
         
         // props is an object containing all the attributes
@@ -111,17 +115,17 @@
 
             // move "if" inside
             return (
-                <div>
-                    {sender === 'robot' && <img src="robot.png" width="50" />}
-                    {message}
-                    {sender === 'user' && <img src="user.png" width="50" />}
+                <div className={sender === 'robot'? 'chat-message-robot' : 'chat-message-user'}>
+                    {sender === 'robot' && <img src="robot.png"/>}
+                    <div className="chat-message-text"> {message} </div>
+                    {sender === 'user' && <img src="user.png"/>}
                 </div>
             );
         }
 
         function ChatMessages({chatMessages}) {
             return (
-                <>
+                <div className="chat-messages-container">
                     {chatMessages.map((chatMessage) => {
                         return (
                             <ChatMessage 
@@ -131,7 +135,7 @@
                             />
                         );
                     })}
-                </>
+                </div>
             );
         }
 
@@ -169,15 +173,15 @@
             */
 
             return (
-                <>
+                <div className="app-container">
+                    <ChatMessages 
+                        chatMessages={chatMessages}
+                    />
                     <ChatInput 
                         chatMessages={chatMessages}
                         setChatMessages={setChatMessages}
                     /> 
-                    <ChatMessages 
-                        chatMessages={chatMessages}
-                    />
-                </>
+                </div>
             );
         }
         
