@@ -2,6 +2,16 @@ body {
     font-family: Arial;
     margin: 0;
 }
+
+.welcome-message {
+    color: gray;
+    text-align: center;
+    margin-top: 50px;
+}
+.loading-img {
+    width: 40px;
+    margin: -15px;
+}
 .send-button {
     background-color: rgb(25,135,84);
     border: none; 

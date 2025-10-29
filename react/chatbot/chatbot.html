@@ -17,6 +17,19 @@
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <script type="text/babel">
+
+        function useAutoScroll(dependencies) {
+            const ref = React.useRef(null);
+            // hook in React, runs a function after the component is created/updated
+            React.useEffect(() => {
+                const containerElem = ref.current;
+                if (containerElem) {
+                    containerElem.scrollTop = containerElem.scrollHeight; 
+                }
+            }, dependencies);
+            return ref;
+        }
+
         // component name must start with Capital letter
         function ChatInput({chatMessages, setChatMessages}) {
             const [inputText, setInputText] = React.useState('');
@@ -49,7 +62,7 @@
                 setChatMessages([
                     ...newChatMessages, 
                     {
-                        message: 'Loading...',
+                        message: <img src="loading-spinner.gif" className="loading-img" />,
                         sender: 'robot',
                         id: crypto.randomUUID()
                     }
@@ -124,6 +137,7 @@
         }
 
         function ChatMessages({chatMessages}) {
+            /*
             // hook, save an HTML element from component
             const chatMessagesRef = React.useRef(null);
             // hook in React, runs a function after the component is created/updated
@@ -134,6 +148,9 @@
                 }
             }, [chatMessages]); // second paramter stores data that needs to be tracked
             // Dependency Array: control when useEffect runs
+            */
+
+            const chatMessagesRef = useAutoScroll([chatMessages]); 
             
             return (
                 <div className="chat-messages-container" ref={chatMessagesRef}>
@@ -157,23 +174,7 @@
         function App() {
 
             // state bounds HTML and data, auto-updates HTML
-            const [chatMessages, setChatMessages]= React.useState([{
-                message: "hello chatbot",
-                sender: "user",
-                id: 'id1'         //necessary in React, unique key for each Component in array
-            }, {
-                message: "Hello! How can I help you?",
-                sender: "robot",
-                id: 'id2'
-            }, {
-                message: "today date?",
-                sender: "user",
-                id: 'id3'
-            }, {
-                message: "Today is Oct 20",
-                sender: "robot",
-                id: 'id4'
-            }]); 
+            const [chatMessages, setChatMessages]= React.useState([]); 
 
             
             /*
@@ -185,6 +186,10 @@
 
             return (
                 <div className="app-container">
+                    {chatMessages.length === 0 && 
+                        <p className='welcome-message'>
+                            Welcome to the chatbot project! Send a message using the textbox below
+                        </p>}
                     <ChatMessages 
                         chatMessages={chatMessages}
                     />
