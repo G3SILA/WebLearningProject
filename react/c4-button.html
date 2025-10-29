@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4</title>
+    <style>
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 18px;
+            color: white;
+            cursor: pointer;
+            background-color: rgb(69, 122, 245);
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 8px 15px; 
+            margin: 10px 0px;
+            border-radius: 5px;
+            border: 1px solid grey; 
+        }
+
+        .on-button {
+            background-color: rgb(25,135,84);
+        }
+        .off-button {
+            background-color: rgb(220, 53, 69);
+        }
+    </style>
+</head>
+<body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+
+        function SwitchButton() {
+            const [isButtonOn, setIsButtonOn] = React.useState(false); 
+
+            return(
+                <button 
+                    className={isButtonOn? 'on-button' : 'off-button'}
+                    onClick={() => {setIsButtonOn(!isButtonOn)}}
+                >
+                    {isButtonOn? 'On' : 'Off'}
+                </button>
+            );
+        }
+
+        function Login() {
+            const [showPassword, setShowPassword] = React.useState(false); 
+            return (
+                <>
+                    <div>
+                        <input type="text" placeholder="Email" />
+                    </div>
+                    <div>
+                        <input type={showPassword? 'text': 'password'} placeholder="Password" />
+                        <button onClick={() => {setShowPassword(!showPassword)}}>
+                            {showPassword? 'Hide' : 'Show'}
+                        </button>
+                    </div>
+                    <button className="login-button">Login</button>
+                    <button className="sign-up-button">Sign up</button>
+                </>
+            );
+        }
+
+        function APP() {
+            return(
+                <>
+                    <SwitchButton />
+                    <Login />
+                </>
+            );
+        }
+        ReactDOM.createRoot(document.querySelector('.js-container')).render(<APP />);
+    </script>
+</body>
+</html>

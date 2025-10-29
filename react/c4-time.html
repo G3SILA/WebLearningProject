@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4 Time</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        /* 100vh is the height of the view port */
+        .counter-container {
+            display: flex;
+            column-gap: 10px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        button {
+            background-color: green;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script type="text/babel">
+        function Clock() {
+            const [time, setTime] = React.useState(new dayjs().format('HH:mm:ss')); 
+
+            React.useEffect(() => {
+                setInterval(()=> {
+                    setTime(new dayjs().format('HH:mm:ss'));
+                }, 1000);
+            }, []); 
+            return (
+                <p>{time}</p>
+            );
+        }
+
+        function Counter() {
+            const [counter, setCounter] = React.useState(0); 
+            const buttonRef = React.useRef(null); 
+            
+            return (
+                <div className="counter-container">
+                    <button
+                        onClick={() => { 
+                            setCounter(counter + 1);
+                        }}
+                        ref={buttonRef}
+                    >
+                        Clicked {counter} {counter === 1? 'time' : 'times'}
+                    </button>
+
+                    <button onClick={() => {setCounter(0)}}>Reset</button>
+                    <button onClick={() => {
+                        setInterval(() => {
+                            //click for practice only
+                            const buttonElem = buttonRef.current; 
+                            if (buttonElem) buttonElem.click(); 
+                        }, 1000); 
+                    }}>Auto Click</button>
+                </div>
+            ); 
+        }
+
+        function APP() {
+            return (
+                <>
+                    <Clock /> 
+                    <Counter />
+                </>
+            );
+        }
+        ReactDOM.createRoot(document.querySelector('.js-container')).render(<APP />);
+    </script>
+</body>
+</html>
