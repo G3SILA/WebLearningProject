@@ -1,5 +1,6 @@
-import {useRef, useEffect } from 'react'
-import ChatMessage from './ChatMessage'
+import {useRef, useEffect } from 'react';
+import ChatMessage from './ChatMessage';
+import './ChatMessages.css';
 
 export function ChatMessages({chatMessages}) {
 
@@ -28,6 +29,7 @@ function useAutoScroll(dependencies) {
         if (containerElem) {
             containerElem.scrollTop = containerElem.scrollHeight; 
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, dependencies);
     return ref;
 }

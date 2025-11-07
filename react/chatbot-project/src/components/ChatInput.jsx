@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import {Chatbot} from 'supersimpledev'
-import Loading from '../assets/loading-spinner.gif'
+import { useState } from 'react';
+import {Chatbot} from 'supersimpledev';
+import Loading from '../assets/loading-spinner.gif';
+import './ChatInput.css';
 
 export function ChatInput({chatMessages, setChatMessages}) {
     const [inputText, setInputText] = useState('');

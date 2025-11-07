@@ -1,7 +1,7 @@
 // loaded from node-modules
-import { useState } from 'react'
-import { ChatInput } from './components/ChatInput'
-import { ChatMessages } from './components/ChatMessages'
+import { useState } from 'react';
+import { ChatInput } from './components/ChatInput';
+import { ChatMessages } from './components/ChatMessages';
 
 // vite feature - import css
 import './App.css'
