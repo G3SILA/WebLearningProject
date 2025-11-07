@@ -9,7 +9,14 @@ import './App.css'
 
 function App() {
 
-    const [chatMessages, setChatMessages]= useState([]); 
+    const [chatMessages, setChatMessages]= useState(
+        JSON.parse(localStorage.getItem('chatMessages')) || []
+    ); 
+
+    useEffect(() => {
+        localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+    }, [chatMessages]);
+
     useEffect(() => {
         Chatbot.addResponses({
             'Which weekday is it today' : function () {
@@ -22,6 +29,7 @@ function App() {
             'bye goodbye': 'Bye! Have a great day!'
         });
     }, []);
+
 
     return (
         <div className="app-container">
