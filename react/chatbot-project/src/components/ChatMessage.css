@@ -20,3 +20,9 @@
 .chat-message-robot img {
     width: 45px;
 }
+
+.chat-message-time {
+    color: rgb(151, 151, 151);
+    padding-top: 4px;
+    font-size: 13px;
+}

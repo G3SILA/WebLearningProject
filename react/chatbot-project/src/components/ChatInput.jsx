@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {Chatbot} from 'supersimpledev';
+import dayjs from 'dayjs';
 import Loading from '../assets/loading-spinner.gif';
 import './ChatInput.css';
 
@@ -17,14 +18,13 @@ export function ChatInput({chatMessages, setChatMessages}) {
         // matches with value={inputText}, to clear the input box after sent
         setInputText('');
 
-        // copy the array into this new array
-        // ...is the spread operator
         const newChatMessages = [
             ...chatMessages, 
             {
                 message: inputText,
                 sender: 'user',
-                id: crypto.randomUUID()
+                id: crypto.randomUUID(),
+                time: dayjs().format('h:mma')
             }
         ];
         // store in a variable because ChatMessages is not updated
@@ -36,7 +36,8 @@ export function ChatInput({chatMessages, setChatMessages}) {
             {
                 message: <img src={Loading} className="loading-img" />,
                 sender: 'robot',
-                id: crypto.randomUUID()
+                id: crypto.randomUUID(),
+                time: ''
             }
         ]); 
 
@@ -46,7 +47,8 @@ export function ChatInput({chatMessages, setChatMessages}) {
             {
                 message: response,
                 sender: 'robot',
-                id: crypto.randomUUID()
+                id: crypto.randomUUID(),
+                time: dayjs().format('h:mma')
             }
         ]); 
         setIsLoading(false); 
@@ -71,6 +73,5 @@ export function ChatInput({chatMessages, setChatMessages}) {
                 className="send-button"
             >Send</button> 
             </div>
-    ); // size: # of characters fit 
-    // Notice React use className instead of class!
+    ); 
 }
