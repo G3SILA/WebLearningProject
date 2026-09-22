@@ -1,4 +1,5 @@
 body {
+    background-color: rgb(237, 242, 252);
     font-family: Arial;
     display: flex;
     flex-direction: column;
@@ -7,53 +8,69 @@ body {
 }
 
 h1 {
-    font-size: 35px; 
+    margin: 0 0 40px;
+    color: rgb(0, 17, 51);
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
 }
 
 .link-collection {
-    margin: 10px 30px; 
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 10px;
-    row-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-@media (max-width: 1600px) {
-    .link-collection {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-@media (max-width: 1200px) {
-    .link-collection {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 800px) {
-    .link-collection {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (max-width: 400px) {
-    .link-collection {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
+/* card */
 .single-web-container {
+    background-color: white;
+    border-radius: 14px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.single-web-container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.single-web-container a {
+    display: block;
+    width: 100%;
 }
 
 .link-title {
-    font-size: 25px;
-    font-weight: bold;
+    width: 100%;
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(0, 17, 51);
 }
 
 .web-img {
-    max-width: 400px;
-    max-height: 400px;
+    display: block;
+
+    width: 100%;
+    height: 200px;
     object-fit: contain;
+
+    background-color: #f8fafc;
+    border-radius: 8px;
+
+    transition: transform 0.2s ease;
 }
