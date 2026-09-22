@@ -10,27 +10,27 @@ let links = [
     }, {
         title: "Coin Flip", 
         link: "js_notes/small-game/coin-flip.html",
-        image: "."
+        image: "img/CoinFlip.jpg"
     }, {
         title: "Fortune-Telling",
         link: "js_notes/small-game/fortuneTelling.html",
-        image: "."
+        image: "img/FortuneTelling.jpg"
     }, {
         title: "Rock Paper Scissors", 
         link: "js_notes/rock-paper-scissors/rock.html",
-        image: "."
+        image: "img/Rock-Paper-Scissors.jpg"
     }, {
         title: "My CatTube", 
         link: "youtube/youtube.html",
-        image: "."
+        image: "img/CatTube.jpg"
     }, {
         title: "My Amazon",
         link: "amazon/amazon.html", 
-        image: "."
+        image: "img/Amazon.jpg"
     }, {
         title: "My Chatbot", 
         link: "react/chatbot/chatbot.html", 
-        image: "."
+        image: "img/Chatbot.jpg"
     }
 ];
 
